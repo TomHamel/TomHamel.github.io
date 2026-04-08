@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tom Hamel — Data Football</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+  --bg: #f8f8f8;
+  --surface: #ffffff;
+  --border: #e5e5e5;
+  --accent: #111111;
+  --accent2: #555555;
+  --text: #111111;
+  --muted: #888888;
+  --card: #ffffff;
+}
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.15em;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .lang-toggle {
+  display: flex;
+  gap: 0.4rem;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  padding: 0.3rem;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: #888888;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.lang-btn.active {
+  background: #111111;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 3rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(200,245,66,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(66,135,245,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content { max-width: 800px; }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.4s;
+    }
+
+    .hero-title span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.6s;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.8s;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+  background: #111111;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background: #333333;
+  transform: translateY(-2px);
+}
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .hero-stats {
+      position: absolute;
+      right: 3rem;
+      bottom: 3rem;
+      display: flex;
+      gap: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 1s;
+    }
+
+    .stat {
+      text-align: right;
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── SECTION ── */
+    section {
+      padding: 5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 3rem;
+      line-height: 1;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .about-text p strong { color: var(--text); font-weight: 500; }
+
+    .about-skills {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .skill-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      width: 120px;
+      flex-shrink: 0;
+    }
+
+    .skill-bar {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      background: #111111;
+      border-radius: 2px;
+      transform-origin: left;
+      animation: growBar 1s ease forwards;
+    }
+
+    @keyframes growBar {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    /* ── PROJETS ── */
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: #111111;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover { border-color: #333; transform: translateY(-4px); }
+    .project-card:hover::before { transform: scaleY(1); }
+
+    .project-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: var(--border);
+      line-height: 1;
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      transition: color 0.3s;
+    }
+
+    .project-card:hover .project-number { color: #2a2a2a; }
+
+    .project-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.03em;
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── CONTACT ── */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .contact-text p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .contact-link-icon {
+      font-size: 1.2rem;
+    }
+
+    .contact-link-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-link-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .contact-link-value {
+      font-size: 0.9rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">TH</div>
+  <ul class="nav-links">
+    <li><a href="#projets" data-fr="Projets" data-es="Proyectos">Projets</a></li>
+    <li><a href="#about" data-fr="À propos" data-es="Sobre mí">À propos</a></li>
+    <li><a href="#contact" data-fr="Contact" data-es="Contacto">Contact</a></li>
+    <li>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <p class="hero-tag" data-fr="Data Analyst · Football" data-es="Analista de Datos · Fútbol">Data Analyst · Football</p>
+    <h1 class="hero-title">TOM<br><span>HAMEL</span></h1>
+    <p class="hero-sub" data-fr="Je construis des outils data pour le football — du modèle statistique au déploiement." data-es="Construyo herramientas de datos para el fútbol — del modelo estadístico al despliegue.">
+      Je construis des outils data pour le football — du modèle statistique au déploiement.
+    </p>
+    <div class="hero-cta">
+      <a href="#projets" class="btn btn-primary" data-fr="Voir les projets" data-es="Ver proyectos">Voir les projets</a>
+      <a href="#contact" class="btn btn-outline" data-fr="Me contacter" data-es="Contactarme">Me contacter</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- PROJETS -->
+<section id="projets">
+  <p class="section-label" data-fr="Travaux" data-es="Trabajos">Travaux</p>
+  <h2 class="section-title" data-fr="Projets" data-es="Proyectos">Projets</h2>
+
+  <div class="projects-grid">
+
+    <!-- Projet 1 -->
+    <div class="project-card">
+      <div class="project-main">
+        <p class="project-tag" data-fr="Scouting · Multi-ligues" data-es="Scouting · Multi-ligas">Scouting · Multi-ligues</p>
+        <h3 class="project-title" data-fr="Outil de Scouting Contextuel MC" data-es="Herramienta de Scouting Contextual MC">Outil de Scouting Contextuel MC</h3>
+        <p class="project-desc" data-fr="Outil complet pour évaluer et comparer les milieux centraux sur 4 ligues (L1, L2, Liga, Liga Segunda). Chaque joueur est contextualisé selon le style de jeu de son équipe pour comparer des profils de systèmes différents sur une même échelle." data-es="Herramienta completa para evaluar y comparar mediocampistas en 4 ligas (L1, L2, Liga, Liga Segunda). Cada jugador es contextualizado según el estilo de juego de su equipo para comparar perfiles de diferentes sistemas en una misma escala.">
+          Outil complet pour évaluer et comparer les milieux centraux sur 4 ligues (L1, L2, Liga, Liga Segunda). Chaque joueur est contextualisé selon le style de jeu de son équipe pour comparer des profils de systèmes différents sur une même échelle.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">Plotly</span>
+          <span class="tag">Wyscout</span>
+          <span class="tag">Matplotlib</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="btn btn-primary" data-fr="Voir la démo" data-es="Ver demo">Voir la démo</a>
+          <a href="#" class="btn btn-outline" data-fr="GitHub" data-es="GitHub">GitHub</a>
+        </div>
+      </div>
+      <div class="project-number">01</div>
+    </div>
+
+    <!-- Projet 2 -->
+    <div class="project-card">
+      <div class="project-main">
+        <p class="project-tag" data-fr="Analyse · Automatisation" data-es="Análisis · Automatización">Analyse · Automatisation</p>
+        <h3 class="project-title" data-fr="Rapport Adversaire Automatisé" data-es="Informe de Rival Automatizado">Rapport Adversaire Automatisé</h3>
+        <p class="project-desc" data-fr="Génération automatique de rapports adversaires en PDF à partir d'exports Wyscout. Analyse de la saison complète, forme récente, style de jeu et tableaux statistiques. Appliqué à FC Annecy en Ligue 2." data-es="Generación automática de informes de rival en PDF a partir de exportaciones de Wyscout. Análisis de la temporada completa, forma reciente, estilo de juego y tablas estadísticas. Aplicado al FC Annecy en Ligue 2.">
+          Génération automatique de rapports adversaires en PDF à partir d'exports Wyscout. Analyse de la saison complète, forme récente, style de jeu et tableaux statistiques. Appliqué à FC Annecy en Ligue 2.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">FPDF</span>
+          <span class="tag">Wyscout</span>
+          <span class="tag">Google Colab</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="btn btn-primary" data-fr="Voir le rapport" data-es="Ver el informe">Voir le rapport</a>
+          <a href="#" class="btn btn-outline" data-fr="GitHub" data-es="GitHub">GitHub</a>
+        </div>
+      </div>
+      <div class="project-number">02</div>
+    </div>
+
+    <!-- Projet 3 -->
+    <div class="project-card">
+      <div class="project-main">
+        <p class="project-tag" data-fr="Modélisation · Prédiction" data-es="Modelización · Predicción">Modélisation · Prédiction</p>
+        <h3 class="project-title" data-fr="Modèle DC Hybride — Ligue 2" data-es="Modelo DC Híbrido — Ligue 2">Modèle DC Hybride — Ligue 2</h3>
+        <p class="project-desc" data-fr="Modèle de prédiction des scores basé sur l'approche Dixon-Coles, adapté à la Ligue 2 française. Intègre des paramètres d'attaque, de défense et un facteur domicile pour estimer les probabilités de résultats." data-es="Modelo de predicción de resultados basado en el enfoque Dixon-Coles, adaptado a la Ligue 2 francesa. Integra parámetros de ataque, defensa y factor local para estimar probabilidades de resultados.">
+          Modèle de prédiction des scores basé sur l'approche Dixon-Coles, adapté à la Ligue 2 française. Intègre des paramètres d'attaque, de défense et un facteur domicile pour estimer les probabilités de résultats.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">SciPy</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Dixon-Coles</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="btn btn-primary" data-fr="Voir le projet" data-es="Ver el proyecto">Voir le projet</a>
+          <a href="#" class="btn btn-outline" data-fr="GitHub" data-es="GitHub">GitHub</a>
+        </div>
+      </div>
+      <div class="project-number">03</div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label" data-fr="Profil" data-es="Perfil">Profil</p>
+  <h2 class="section-title" data-fr="À propos" data-es="Sobre mí">À propos</h2>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p data-fr="<strong>Licence STAPS</strong> + <strong>Master Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023)." data-es="<strong>Licenciatura STAPS</strong> + <strong>Máster Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023).">
+        <strong>Licence STAPS</strong> + <strong>Master Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023).
+      </p>
+      <p data-fr="Passionné par l'intersection entre la data et le football. Je construis des outils qui aident à mieux comprendre les joueurs, les équipes et les performances — en combinant analyse statistique et analyse vidéo." data-es="Apasionado por la intersección entre los datos y el fútbol. Construyo herramientas que ayudan a comprender mejor a los jugadores, los equipos y el rendimiento — combinando análisis estadístico y análisis de vídeo.">
+  Passionné par l'intersection entre la data et le football. Je construis des outils qui aident à mieux comprendre les joueurs, les équipes et les performances — en combinant analyse statistique et analyse vidéo.
+      </p>
+      <p data-fr="Basé à <strong>Le Havre</strong>, disponible pour l'Espagne et le marché franco-espagnol." data-es="Basado en <strong>Le Havre</strong>, disponible para España y el mercado franco-español.">
+        Basé à <strong>Le Havre</strong>, disponible pour l'Espagne et le marché franco-espagnol.
+      </p>
+      <p data-fr="Français natif · Espagnol courant · Anglais intermédiaire." data-es="Francés nativo · Español fluido · Inglés intermedio.">
+  Français natif · Espagnol courant · Anglais intermédiaire.
+      </p>
+    </div>
+
+    <div class="about-skills">
+      <div class="skill-row">
+        <span class="skill-name">Python</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Pandas / NumPy</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Wyscout</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Streamlit</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Matplotlib</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Metrica Sport</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">SQL</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label" data-fr="Contact" data-es="Contacto">Contact</p>
+  <h2 class="section-title" data-fr="Me contacter" data-es="Contactarme">Me contacter</h2>
+
+  <div class="contact-wrapper">
+    <div class="contact-text">
+      <p data-fr="Disponible pour des opportunités en analyse de performance, scouting data, analyse vidéo ou développement d'outils football." data-es="Disponible para oportunidades en análisis de rendimiento, scouting data, análisis de vídeo o desarrollo de herramientas de fútbol.">
+  Disponible pour des opportunités en analyse de performance, scouting data, analyse vidéo ou développement d'outils football.
+      </p>
+      <p data-fr="Marchés cibles : France · Espagne." data-es="Mercados objetivo: Francia · España.">
+        Marchés cibles : France · Espagne.
+      </p>
+    </div>
+
+    <div class="contact-links">
+      <a href="mailto:datafoot2@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉</span>
+        <div class="contact-link-info">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-value">datafoot2@gmail.com</span>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/tom-hamel-92314a3a3/" target="_blank" class="contact-link">
+        <span class="contact-link-icon">in</span>
+        <div class="contact-link-info">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-value">Tom Hamel</span>
+        </div>
+      </a>
+      <a href="https://github.com/TomHamel" target="_blank" class="contact-link">
+        <span class="contact-link-icon">⌥</span>
+        <div class="contact-link-info">
+          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-value">TomHamel</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Tom Hamel</p>
+  <p data-fr="Data Football · Python · Wyscout" data-es="Data Fútbol · Python · Wyscout">Data Football · Python · Wyscout</p>
+</footer>
+
+<script>
+  function setLang(lang) {
+    // Update buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+
+    // Update all elements with data-fr / data-es
+    document.querySelectorAll('[data-fr]').forEach(el => {
+      const text = el.getAttribute(`data-${lang}`);
+      if (text) el.innerHTML = text;
+    });
+
+    document.documentElement.lang = lang;
+  }
+</script>
+
+</body>
+</html>
