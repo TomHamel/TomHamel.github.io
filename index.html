@@ -295,6 +295,10 @@
     .project-card:hover { border-color: #333; transform: translateY(-4px); }
     .project-card:hover::before { transform: scaleY(1); }
 
+    /* Masquage par langue */
+    .lang-fr, .lang-es { display: none; }
+    .lang-fr.active, .lang-es.active { display: block; }
+
     .project-number {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 4rem;
@@ -442,8 +446,8 @@
     <li><a href="#contact" data-fr="Contact" data-es="Contacto">Contact</a></li>
     <li>
       <div class="lang-toggle">
-        <button class="lang-btn active" onclick="setLang('fr')">FR</button>
-        <button class="lang-btn" onclick="setLang('es')">ES</button>
+        <button class="lang-btn active" onclick="setLang('fr', event)">FR</button>
+        <button class="lang-btn" onclick="setLang('es', event)">ES</button>
       </div>
     </li>
   </ul>
@@ -471,12 +475,14 @@
 
   <div class="projects-grid">
 
-    <!-- Projet 1 -->
+    <!-- Projet 1 — visible FR + ES -->
     <div class="project-card">
       <div class="project-main">
         <p class="project-tag" data-fr="Scouting · Multi-ligues" data-es="Scouting · Multi-ligas">Scouting · Multi-ligues</p>
         <h3 class="project-title" data-fr="Outil de Scouting Contextuel MC" data-es="Herramienta de Scouting Contextual MC">Outil de Scouting Contextuel MC</h3>
-        <p class="project-desc" data-fr="Outil complet pour évaluer et comparer les milieux centraux sur 4 ligues (L1, L2, Liga, Liga Segunda). Chaque joueur est contextualisé selon le style de jeu de son équipe pour comparer des profils de systèmes différents sur une même échelle." data-es="Herramienta completa para evaluar y comparar mediocampistas en 4 ligas (L1, L2, Liga, Liga Segunda). Cada jugador es contextualizado según el estilo de juego de su equipo para comparar perfiles de diferentes sistemas en una misma escala.">
+        <p class="project-desc"
+           data-fr="Outil complet pour évaluer et comparer les milieux centraux sur 4 ligues (L1, L2, Liga, Liga Segunda). Chaque joueur est contextualisé selon le style de jeu de son équipe pour comparer des profils de systèmes différents sur une même échelle."
+           data-es="Herramienta completa para evaluar y comparar mediocampistas en 4 ligas (L1, L2, Liga, Liga Segunda). Cada jugador es contextualizado según el estilo de juego de su equipo para comparar perfiles de diferentes sistemas en una misma escala.">
           Outil complet pour évaluer et comparer les milieux centraux sur 4 ligues (L1, L2, Liga, Liga Segunda). Chaque joueur est contextualisé selon le style de jeu de son équipe pour comparer des profils de systèmes différents sur une même échelle.
         </p>
         <div class="project-tags">
@@ -489,18 +495,18 @@
         </div>
         <div class="project-links">
           <a href="https://mc-scouting-dx3v4owgnyhaznasftw2gk.streamlit.app/" target="_blank" class="btn btn-primary" data-fr="Voir la démo" data-es="Ver demo">Voir la démo</a>
-          <a href="https://github.com/TomHamel/mc-scouting" target="_blank" class="btn btn-outline" data-fr="GitHub" data-es="GitHub">GitHub</a>
+          <a href="https://github.com/TomHamel/mc-scouting" target="_blank" class="btn btn-outline">GitHub</a>
         </div>
       </div>
       <div class="project-number">01</div>
     </div>
 
-    <!-- Projet 2 -->
-    <div class="project-card">
+    <!-- Projet 2 FR — Annecy Ligue 2 -->
+    <div class="project-card lang-fr active">
       <div class="project-main">
-        <p class="project-tag" data-fr="Analyse · Automatisation" data-es="Análisis · Automatización">Analyse · Automatisation</p>
-        <h3 class="project-title" data-fr="Rapport Adversaire Automatisé" data-es="Informe de Rival Automatizado">Rapport Adversaire Automatisé</h3>
-        <p class="project-desc" data-fr="Génération automatique de rapports adversaires en PDF à partir d'exports Wyscout. Analyse de la saison complète, forme récente, style de jeu et tableaux statistiques. Appliqué à FC Annecy en Ligue 2." data-es="Generación automática de informes de rival en PDF a partir de exportaciones de Wyscout. Análisis de la temporada completa, forma reciente, estilo de juego y tablas estadísticas. Aplicado al FC Annecy en Ligue 2.">
+        <p class="project-tag">Analyse · Automatisation</p>
+        <h3 class="project-title">Rapport Adversaire Automatisé</h3>
+        <p class="project-desc">
           Génération automatique de rapports adversaires en PDF à partir d'exports Wyscout. Analyse de la saison complète, forme récente, style de jeu et tableaux statistiques. Appliqué à FC Annecy en Ligue 2.
         </p>
         <div class="project-tags">
@@ -512,10 +518,34 @@
           <span class="tag">Google Colab</span>
         </div>
         <div class="project-links">
-        <a href="assets/Rapport_Adversaire_Annecy_L2.pdf" target="_blank" class="btn btn-primary" data-fr="Rapport data" data-es="Informe data">Rapport data</a>
-        <a href="https://youtu.be/27IOs9cQ0c4" target="_blank" class="btn btn-outline" data-fr="Analyse vidéo" data-es="Análisis vídeo">Analyse vidéo</a>
-        <a href="assets/Analyse_Tactique_FC_Annecy.pdf" target="_blank" class="btn btn-outline" data-fr="Fiche synthèse" data-es="Ficha síntesis">Fiche synthèse</a>
-        <a href="https://github.com/TomHamel/rapport-adversaire-l2" target="_blank" class="btn btn-outline" data-fr="GitHub" data-es="GitHub">GitHub</a>
+          <a href="assets/Rapport_Adversaire_Annecy_L2.pdf" target="_blank" class="btn btn-primary">Rapport data</a>
+          <a href="https://youtu.be/27IOs9cQ0c4" target="_blank" class="btn btn-outline">Analyse vidéo</a>
+          <a href="assets/Analyse_Tactique_FC_Annecy.pdf" target="_blank" class="btn btn-outline">Fiche synthèse</a>
+          <a href="https://github.com/TomHamel/rapport-adversaire-l2" target="_blank" class="btn btn-outline">GitHub</a>
+        </div>
+      </div>
+      <div class="project-number">02</div>
+    </div>
+
+    <!-- Projet 2 ES — Castellón Liga Segunda -->
+    <div class="project-card lang-es">
+      <div class="project-main">
+        <p class="project-tag">Análisis · Automatización</p>
+        <h3 class="project-title">Informe de Rival Automatizado</h3>
+        <p class="project-desc">
+          Generación automática de informes de rival en PDF a partir de exportaciones de Wyscout. Informe completo de 17 páginas : perfil táctico, mapa de scouting, formaciones, análisis de los últimos 5 partidos, defensa, organización, ataque, transiciones, balones parados y jugadores destacados. Aplicado a Castellón en Liga Segunda.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">mplsoccer</span>
+          <span class="tag">Wyscout</span>
+          <span class="tag">Google Colab</span>
+        </div>
+        <div class="project-links">
+          <a href="assets/Informe_Rival_Castellón_LigaSegunda (5).pdf" target="_blank" class="btn btn-primary">Informe data</a>
+          <a href="#" class="btn btn-outline" style="opacity:0.4; pointer-events:none;">Vídeo — próximamente</a>
         </div>
       </div>
       <div class="project-number">02</div>
@@ -627,15 +657,25 @@
 </footer>
 
 <script>
-  function setLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.remove('active');
-    });
+  function setLang(lang, event) {
+    // Boutons actifs
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
+
+    // Traduction textes
     document.querySelectorAll('[data-fr]').forEach(el => {
       const text = el.getAttribute(`data-${lang}`);
       if (text) el.innerHTML = text;
     });
+
+    // Affichage/masquage des projets par langue
+    document.querySelectorAll('.lang-fr').forEach(el => {
+      el.classList.toggle('active', lang === 'fr');
+    });
+    document.querySelectorAll('.lang-es').forEach(el => {
+      el.classList.toggle('active', lang === 'es');
+    });
+
     document.documentElement.lang = lang;
   }
 </script>
