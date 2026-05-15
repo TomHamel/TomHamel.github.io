@@ -356,6 +356,14 @@
       flex-wrap: wrap;
     }
 
+    .project-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 0.8rem;
+      line-height: 1.5;
+    }
+
     .contact-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -443,6 +451,26 @@
       margin-bottom: 0.8rem;
       margin-top: 1.5rem;
     }
+
+    .projects-note {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .projects-note p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .projects-note p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
@@ -482,6 +510,13 @@
   <p class="section-label" data-fr="Travaux" data-es="Trabajos">Travaux</p>
   <h2 class="section-title" data-fr="Projets" data-es="Proyectos">Projets</h2>
 
+  <!-- Note contextuelle -->
+  <div class="projects-note">
+    <p data-fr="<strong>Ces projets sont des démonstrations de mes compétences techniques.</strong> Ils illustrent ma capacité à construire des outils d'analyse de rival, de scouting contextuel et d'analyse vidéo. En contexte professionnel, je m'adapte aux besoins du club — avec les données, les outils et les contraintes disponibles." data-es="<strong>Estos proyectos son demostraciones de mis competencias técnicas.</strong> Ilustran mi capacidad para construir herramientas de análisis de rival, scouting contextual y análisis de vídeo. En un contexto profesional, me adapto a las necesidades del club — con los datos, las herramientas y las limitaciones disponibles.">
+      <strong>Ces projets sont des démonstrations de mes compétences techniques.</strong> Ils illustrent ma capacité à construire des outils d'analyse de rival, de scouting contextuel et d'analyse vidéo. En contexte professionnel, je m'adapte aux besoins du club — avec les données, les outils et les contraintes disponibles.
+    </p>
+  </div>
+
   <div class="projects-grid">
 
     <!-- Projet 1 — visible FR + ES -->
@@ -507,10 +542,10 @@
           <a href="https://mc-scouting-dx3v4owgnyhaznasftw2gk.streamlit.app/?lang=es" target="_blank" class="btn btn-primary lang-es">Ver demo</a>
           <a href="https://github.com/TomHamel/mc-scouting" target="_blank" class="btn btn-outline">GitHub</a>
         </div>
-        <p style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--muted);margin-top:0.8rem;"
-           data-fr="⚠️ L'app peut prendre quelques secondes à se réveiller — hébergée gratuitement sur Streamlit Cloud."
-           data-es="⚠️ La app puede tardar unos segundos en cargar — alojada gratuitamente en Streamlit Cloud.">
-          ⚠️ L'app peut prendre quelques secondes à se réveiller — hébergée gratuitement sur Streamlit Cloud.
+        <p class="project-note"
+           data-fr="⚠️ L'app peut mettre quelques secondes à se réveiller. Si un écran de mise en veille apparaît, cliquer sur <strong>« Yes, get this app back up! »</strong>"
+           data-es="⚠️ La app puede tardar unos segundos en cargar. Si aparece una pantalla de espera, hacer clic en <strong>« Yes, get this app back up! »</strong>">
+          ⚠️ L'app peut mettre quelques secondes à se réveiller. Si un écran de mise en veille apparaît, cliquer sur <strong>« Yes, get this app back up! »</strong>
         </p>
       </div>
       <div class="project-number">01</div>
@@ -578,14 +613,14 @@
 
   <div class="about-grid">
     <div class="about-text">
-      <p data-fr="<strong>Licence STAPS</strong> + <strong>Master Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023)." data-es="<strong>Grado en CAFYD</strong> + <strong>Máster Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023).">
-        <strong>Licence STAPS</strong> + <strong>Master Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023).
+      <p data-fr="<strong>Licence Sciences et Techniques des Activités Physiques et Sportives (STAPS)</strong> + <strong>Master Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023)." data-es="<strong>Grado en Ciencias de la Actividad Física y del Deporte (CAFYD)</strong> + <strong>Máster Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023).">
+        <strong>Licence Sciences et Techniques des Activités Physiques et Sportives (STAPS)</strong> + <strong>Master Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023).
       </p>
       <p data-fr="Passionné par l'intersection entre la data et le football. Je construis des outils qui aident à mieux comprendre les joueurs, les équipes et les performances — en combinant analyse statistique et analyse vidéo." data-es="Apasionado por la intersección entre los datos y el fútbol. Construyo herramientas que ayudan a comprender mejor a los jugadores, los equipos y el rendimiento — combinando análisis estadístico y análisis de vídeo.">
         Passionné par l'intersection entre la data et le football. Je construis des outils qui aident à mieux comprendre les joueurs, les équipes et les performances — en combinant analyse statistique et analyse vidéo.
       </p>
-      <p data-fr="Basé à <strong>Le Havre</strong>, disponible pour l'Espagne et le marché franco-espagnol." data-es="Basado en <strong>Le Havre</strong>, disponible para España y el mercado franco-español.">
-        Basé à <strong>Le Havre</strong>, disponible pour l'Espagne et le marché franco-espagnol.
+      <p data-fr="Basé au <strong>Havre</strong> (Normandie), avec un point de chute en <strong>Andalousie</strong>. Disponible pour l'Espagne — en particulier le marché andalou — et la France." data-es="Basado en <strong>Le Havre</strong> (Normandía), con base en <strong>Andalucía</strong>. Disponible para España — en particular el mercado andaluz — y Francia.">
+        Basé au <strong>Havre</strong> (Normandie), avec un point de chute en <strong>Andalousie</strong>. Disponible pour l'Espagne — en particulier le marché andalou — et la France.
       </p>
       <p data-fr="Français natif · Espagnol courant · Anglais intermédiaire." data-es="Francés nativo · Español fluido · Inglés intermedio.">
         Français natif · Espagnol courant · Anglais intermédiaire.
@@ -663,8 +698,8 @@
       <p data-fr="Disponible pour des opportunités en analyse de performance, scouting data, analyse vidéo ou développement d'outils football." data-es="Disponible para oportunidades en análisis de rendimiento, scouting data, análisis de vídeo o desarrollo de herramientas de fútbol.">
         Disponible pour des opportunités en analyse de performance, scouting data, analyse vidéo ou développement d'outils football.
       </p>
-      <p data-fr="Marchés cibles : France · Espagne." data-es="Mercados objetivo: Francia · España.">
-        Marchés cibles : France · Espagne.
+      <p data-fr="Marchés cibles : <strong>France · Espagne</strong> (Andalousie en priorité)." data-es="Mercados objetivo: <strong>Francia · España</strong> (Andalucía en prioridad).">
+        Marchés cibles : <strong>France · Espagne</strong> (Andalousie en priorité).
       </p>
     </div>
 
