@@ -81,7 +81,7 @@
       border: none;
       color: #888888;
       font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       cursor: pointer;
       padding: 0.2rem 0.5rem;
       border-radius: 3px;
@@ -209,7 +209,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
-      align-items: center;
+      align-items: start;
     }
 
     .about-text p {
@@ -236,7 +236,7 @@
       font-family: 'DM Mono', monospace;
       font-size: 0.75rem;
       color: var(--muted);
-      width: 120px;
+      width: 140px;
       flex-shrink: 0;
     }
 
@@ -295,7 +295,6 @@
     .project-card:hover { border-color: #333; transform: translateY(-4px); }
     .project-card:hover::before { transform: scaleY(1); }
 
-    /* Masquage par langue */
     .lang-fr, .lang-es { display: none; }
     .lang-fr.active, .lang-es.active { display: block; }
 
@@ -434,6 +433,16 @@
       border-top: 1px solid var(--border);
       margin: 0;
     }
+
+    .skills-section-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      margin-top: 1.5rem;
+    }
   </style>
 </head>
 <body>
@@ -446,8 +455,8 @@
     <li><a href="#contact" data-fr="Contact" data-es="Contacto">Contact</a></li>
     <li>
       <div class="lang-toggle">
-        <button class="lang-btn active" onclick="setLang('fr', event)">FR</button>
-        <button class="lang-btn" onclick="setLang('es', event)">ES</button>
+        <button class="lang-btn active" onclick="setLang('fr', event)">🇫🇷 FR</button>
+        <button class="lang-btn" onclick="setLang('es', event)">🇪🇸 ES</button>
       </div>
     </li>
   </ul>
@@ -498,6 +507,11 @@
           <a href="https://mc-scouting-dx3v4owgnyhaznasftw2gk.streamlit.app/?lang=es" target="_blank" class="btn btn-primary lang-es">Ver demo</a>
           <a href="https://github.com/TomHamel/mc-scouting" target="_blank" class="btn btn-outline">GitHub</a>
         </div>
+        <p style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--muted);margin-top:0.8rem;"
+           data-fr="⚠️ L'app peut prendre quelques secondes à se réveiller — hébergée gratuitement sur Streamlit Cloud."
+           data-es="⚠️ La app puede tardar unos segundos en cargar — alojada gratuitamente en Streamlit Cloud.">
+          ⚠️ L'app peut prendre quelques secondes à se réveiller — hébergée gratuitement sur Streamlit Cloud.
+        </p>
       </div>
       <div class="project-number">01</div>
     </div>
@@ -564,7 +578,7 @@
 
   <div class="about-grid">
     <div class="about-text">
-      <p data-fr="<strong>Licence STAPS</strong> + <strong>Master Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023)." data-es="<strong>Licenciatura STAPS</strong> + <strong>Máster Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023).">
+      <p data-fr="<strong>Licence STAPS</strong> + <strong>Master Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023)." data-es="<strong>Grado en CAFYD</strong> + <strong>Máster Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023).">
         <strong>Licence STAPS</strong> + <strong>Master Big Data Deportivo</strong> (Sports Data Campus, UCAM Murcia 2023).
       </p>
       <p data-fr="Passionné par l'intersection entre la data et le football. Je construis des outils qui aident à mieux comprendre les joueurs, les équipes et les performances — en combinant analyse statistique et analyse vidéo." data-es="Apasionado por la intersección entre los datos y el fútbol. Construyo herramientas que ayudan a comprender mejor a los jugadores, los equipos y el rendimiento — combinando análisis estadístico y análisis de vídeo.">
@@ -579,6 +593,8 @@
     </div>
 
     <div class="about-skills">
+
+      <p class="skills-section-title" data-fr="Analyse & Développement" data-es="Análisis & Desarrollo">Analyse & Développement</p>
       <div class="skill-row">
         <span class="skill-name">Python</span>
         <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
@@ -588,9 +604,19 @@
         <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
       </div>
       <div class="skill-row">
-        <span class="skill-name">Wyscout</span>
-        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        <span class="skill-name">R</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
       </div>
+      <div class="skill-row">
+        <span class="skill-name">SQL</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Machine Learning</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+      </div>
+
+      <p class="skills-section-title" data-fr="Visualisation & Déploiement" data-es="Visualización & Despliegue">Visualisation & Déploiement</p>
       <div class="skill-row">
         <span class="skill-name">Streamlit</span>
         <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
@@ -600,13 +626,28 @@
         <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
       </div>
       <div class="skill-row">
-        <span class="skill-name">Metrica Sport</span>
+        <span class="skill-name">Tableau / Power BI</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div>
+      </div>
+
+      <p class="skills-section-title" data-fr="Données Football" data-es="Datos Fútbol">Données Football</p>
+      <div class="skill-row">
+        <span class="skill-name">Wyscout</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Metrica Sports</span>
         <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
       </div>
       <div class="skill-row">
-        <span class="skill-name">SQL</span>
-        <div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div>
+        <span class="skill-name">Mediacoach</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:50%"></div></div>
       </div>
+      <div class="skill-row">
+        <span class="skill-name">Opta / Instat</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:50%"></div></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -631,8 +672,15 @@
       <a href="mailto:datafoot2@gmail.com" class="contact-link">
         <span class="contact-link-icon">✉</span>
         <div class="contact-link-info">
-          <span class="contact-link-label">Email</span>
+          <span class="contact-link-label" data-fr="Email Pro" data-es="Email Pro">Email Pro</span>
           <span class="contact-link-value">datafoot2@gmail.com</span>
+        </div>
+      </a>
+      <a href="mailto:tom.hamel76@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉</span>
+        <div class="contact-link-info">
+          <span class="contact-link-label" data-fr="Email Perso" data-es="Email Personal">Email Perso</span>
+          <span class="contact-link-value">tom.hamel76@gmail.com</span>
         </div>
       </a>
       <a href="https://www.linkedin.com/in/tom-hamel-92314a3a3/" target="_blank" class="contact-link">
@@ -642,11 +690,11 @@
           <span class="contact-link-value">Tom Hamel</span>
         </div>
       </a>
-      <a href="https://github.com/TomHamel" target="_blank" class="contact-link">
+      <a href="https://tomhamel.github.io" target="_blank" class="contact-link">
         <span class="contact-link-icon">⌥</span>
         <div class="contact-link-info">
-          <span class="contact-link-label">GitHub</span>
-          <span class="contact-link-value">TomHamel</span>
+          <span class="contact-link-label">Portfolio</span>
+          <span class="contact-link-value">tomhamel.github.io</span>
         </div>
       </a>
     </div>
@@ -660,17 +708,14 @@
 
 <script>
   function setLang(lang, event) {
-    // Boutons actifs
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
 
-    // Traduction textes
     document.querySelectorAll('[data-fr]').forEach(el => {
       const text = el.getAttribute(`data-${lang}`);
       if (text) el.innerHTML = text;
     });
 
-    // Affichage/masquage des projets par langue
     document.querySelectorAll('.lang-fr').forEach(el => {
       el.classList.toggle('active', lang === 'fr');
     });
