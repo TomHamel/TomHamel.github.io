@@ -260,8 +260,8 @@
     .project-card:hover { border-color: #333; transform: translateY(-4px); }
     .project-card:hover::before { transform: scaleY(1); }
 
-    .lang-fr, .lang-es { display: none; }
-    .lang-fr.active, .lang-es.active { display: block; }
+    .lang-fr, .lang-es, .lang-en { display: none; }
+    .lang-fr.active, .lang-es.active, .lang-en.active { display: block; }
 
     .project-number {
       font-family: 'Bebas Neue', sans-serif;
@@ -448,7 +448,8 @@
     }
 
     .btn.lang-fr.active,
-    .btn.lang-es.active {
+    .btn.lang-es.active,
+    .btn.lang-en.active {
       display: inline-flex;
     }
         .projects-category {
@@ -630,6 +631,73 @@
         .featured-update {
       text-align: right;
     }
+        .shots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .shot a:hover img {
+      transform: translateY(-3px);
+      border-color: var(--text);
+    }
+
+    .shot figcaption {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-align: center;
+      margin-top: 0.6rem;
+    }
+
+    @media (max-width: 700px) {
+      .shots {
+        grid-template-columns: 1fr;
+      }
+    }
+        .demo-video {
+      margin-bottom: 1.5rem;
+    }
+
+    .demo-video video {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #000;
+    }
+        @media (max-width: 768px) {
+      nav { padding: 0.9rem 1.2rem; }
+      .nav-links { gap: 0.8rem; }
+      .nav-links li:not(:last-child) { display: none; }
+      .lang-btn { font-size: 0.75rem; padding: 0.2rem 0.4rem; }
+
+      .hero { padding: 6rem 1.5rem 3rem; }
+      .hero { min-height: auto; padding-top: 8rem; padding-bottom: 4rem; }
+      section { padding: 4rem 1.5rem; }
+      .section-title { margin-bottom: 2rem; }
+
+      .featured-project { padding: 1.5rem; }
+      .featured-title { font-size: 2.4rem; }
+      .method-content { padding: 1.2rem; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-text, .about-skills { grid-column: 1; grid-row: auto; }
+
+      .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+
+      footer { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 1.5rem; }
+    }
   </style>
 </head>
 <body>
@@ -637,13 +705,14 @@
 <nav>
   <div class="nav-logo">TH</div>
   <ul class="nav-links">
-    <li><a href="#projets" data-fr="Projets" data-es="Proyectos">Projets</a></li>
-    <li><a href="#about" data-fr="À propos" data-es="Sobre mí">À propos</a></li>
-    <li><a href="#contact" data-fr="Contact" data-es="Contacto">Contact</a></li>
+    <li><a href="#projets" data-fr="Projets" data-es="Proyectos" data-en="Projects">Projets</a></li>
+    <li><a href="#about" data-fr="À propos" data-es="Sobre mí" data-en="About">À propos</a></li>
+    <li><a href="#contact" data-fr="Contact" data-es="Contacto" data-en="Contact">Contact</a></li>
     <li>
       <div class="lang-toggle">
-        <button class="lang-btn active" onclick="setLang('fr', event)">🇫🇷 FR</button>
-        <button class="lang-btn" onclick="setLang('es', event)">🇪🇸 ES</button>
+        <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">🇫🇷 FR</button>
+        <button class="lang-btn" data-lang="es" onclick="setLang('es')">🇪🇸 ES</button>
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">🇬🇧 EN</button>
       </div>
     </li>
   </ul>
@@ -651,15 +720,15 @@
 
 <div class="hero">
   <div class="hero-content">
-    <p class="hero-tag" data-fr="Analyste de performance — Data · Vidéo · Scouting" data-es="Analista táctico — Datos · Vídeo · Scouting">Analyste de performance — Data · Vidéo · Scouting</p>
+    <p class="hero-tag" data-fr="Analyste de performance — Data · Vidéo · Scouting" data-es="Analista táctico — Datos · Vídeo · Scouting" data-en="Performance Analyst — Data · Video · Scouting">Analyste de performance — Data · Vidéo · Scouting</p>
     <h1 class="hero-title">TOM<br><span>HAMEL</span></h1>
-    <p class="hero-sub" data-fr="J'analyse le jeu par la vidéo et par la data, pour préparer les adversaires, évaluer les joueurs et livrer au staff des rapports clairs." data-es="Analizo el juego a través del vídeo y los datos, para analizar al rival, evaluar a los jugadores y entregar al cuerpo técnico informes claros.">
+    <p class="hero-sub" data-fr="J'analyse le jeu par la vidéo et par la data, pour préparer les adversaires, évaluer les joueurs et livrer au staff des rapports clairs." data-es="Analizo el juego a través del vídeo y los datos, para analizar al rival, evaluar a los jugadores y entregar al cuerpo técnico informes claros." data-en="I analyse the game through video and data to prepare for opponents, assess players and deliver clear reports to the coaching staff.">
       J'analyse le jeu par la vidéo et par la data, pour préparer les adversaires, évaluer les joueurs et livrer au staff des rapports clairs.
     </p>
-            <div class="hero-cta">
-      <a href="#projets" class="btn btn-primary" data-fr="Voir les projets" data-es="Ver proyectos">Voir les projets</a>
-      <a href="#about" class="btn btn-outline" data-fr="Mon profil" data-es="Mi perfil">Mon profil</a>
-      <a href="#contact" class="btn btn-outline" data-fr="Me contacter" data-es="Contactarme">Me contacter</a>
+    <div class="hero-cta">
+      <a href="#projets" class="btn btn-primary" data-fr="Voir les projets" data-es="Ver proyectos" data-en="View projects">Voir les projets</a>
+      <a href="#about" class="btn btn-outline" data-fr="Mon profil" data-es="Mi perfil" data-en="My profile">Mon profil</a>
+      <a href="#contact" class="btn btn-outline" data-fr="Me contacter" data-es="Contactarme" data-en="Contact me">Me contacter</a>
     </div>
   </div>
 </div>
@@ -667,57 +736,95 @@
 <hr class="divider"/>
 
 <section id="projets">
-  <p class="section-label" data-fr="Travaux" data-es="Trabajos">Travaux</p>
-  <h2 class="section-title" data-fr="Projets" data-es="Proyectos">Projets</h2>
+  <p class="section-label" data-fr="Travaux" data-es="Trabajos" data-en="Work">Travaux</p>
+  <h2 class="section-title" data-fr="Projets" data-es="Proyectos" data-en="Projects">Projets</h2>
+
   <!-- ===== OUTIL PRINCIPAL : SCOUTANALYTICS ===== -->
   <div class="featured-project">
-    <p class="featured-label" data-fr="Outil principal" data-es="Herramienta principal">Outil principal</p>
+    <p class="featured-label" data-fr="Outil principal" data-es="Herramienta principal" data-en="Main tool">Outil principal</p>
     <h3 class="featured-title">ScoutAnalytics</h3>
 
-    <p class="featured-desc" data-fr="ScoutAnalytics réunit dans un seul outil les données des équipes et des joueurs, sur un ou plusieurs championnats. Côté équipes : style de jeu, performance collective, comparaison entre adversaires. Côté joueurs : classements par poste, radars de comparaison, recherche par profil. Et les deux sont liés : chaque joueur est évalué dans le contexte tactique de son équipe." data-es="ScoutAnalytics reúne en una sola herramienta los datos de equipos y jugadores, de una o varias competiciones. En equipos: estilo de juego, rendimiento colectivo, comparación entre rivales. En jugadores: rankings por posición, radares comparativos y búsqueda por perfil. Y ambos están conectados: cada jugador se evalúa en el contexto táctico de su equipo.">
+    <p class="featured-desc" data-fr="ScoutAnalytics réunit dans un seul outil les données des équipes et des joueurs, sur un ou plusieurs championnats. Côté équipes : style de jeu, performance collective, comparaison entre adversaires. Côté joueurs : classements par poste, radars de comparaison, recherche par profil. Et les deux sont liés : chaque joueur est évalué dans le contexte tactique de son équipe." data-es="ScoutAnalytics reúne en una sola herramienta los datos de equipos y jugadores, de una o varias competiciones. En equipos: estilo de juego, rendimiento colectivo, comparación entre rivales. En jugadores: rankings por posición, radares comparativos y búsqueda por perfil. Y ambos están conectados: cada jugador se evalúa en el contexto táctico de su equipo." data-en="ScoutAnalytics brings team and player data together in a single tool, across one or more competitions. Teams: playing style, collective performance, opponent comparison. Players: rankings by position, comparison radars, profile-based search. And the two are linked: every player is assessed in the tactical context of their team.">
       ScoutAnalytics réunit dans un seul outil les données des équipes et des joueurs, sur un ou plusieurs championnats. Côté équipes : style de jeu, performance collective, comparaison entre adversaires. Côté joueurs : classements par poste, radars de comparaison, recherche par profil. Et les deux sont liés : chaque joueur est évalué dans le contexte tactique de son équipe.
     </p>
 
     <div class="pipeline">
       <div class="pipeline-step">
-        <p class="pipeline-name" data-fr="Données de match" data-es="Datos de partido">Données de match</p>
+        <p class="pipeline-name" data-fr="Données de match" data-es="Datos de partido" data-en="Match data">Données de match</p>
         <p class="pipeline-detail">Wyscout</p>
       </div>
       <span class="pipeline-arrow">→</span>
       <div class="pipeline-step main">
         <p class="pipeline-name">ScoutAnalytics</p>
-        <p class="pipeline-detail" data-fr="Pipeline Python · Scoring contextuel · Dashboard" data-es="Pipeline Python · Scoring contextual · Dashboard">Pipeline Python · Scoring contextuel · Dashboard</p>
+        <p class="pipeline-detail" data-fr="Pipeline Python · Scoring contextuel · Dashboard" data-es="Pipeline Python · Scoring contextual · Dashboard" data-en="Python pipeline · Contextual scoring · Dashboard">Pipeline Python · Scoring contextuel · Dashboard</p>
       </div>
       <span class="pipeline-arrow">→</span>
       <div class="pipeline-step">
-        <p class="pipeline-name" data-fr="Analyse d'équipe · Analyse de joueur · Rapports & vidéos" data-es="Análisis de equipo · Análisis de jugador · Informes y vídeos">Analyse d'équipe · Analyse de joueur · Rapports & vidéos</p>
+        <p class="pipeline-name" data-fr="Analyse d'équipe · Analyse de joueur · Rapports & vidéos" data-es="Análisis de equipo · Análisis de jugador · Informes y vídeos" data-en="Team analysis · Player analysis · Reports & videos">Analyse d'équipe · Analyse de joueur · Rapports & vidéos</p>
       </div>
     </div>
 
-    <div class="featured-video" data-fr="Vidéo de démonstration à venir" data-es="Vídeo de demostración próximamente">Vidéo de démonstration à venir</div>
-    <p class="featured-note" data-fr="Version complète présentée en entretien." data-es="Versión completa presentada en entrevista.">Version complète présentée en entretien.</p>
-        <details class="method-box">
-      <summary class="btn btn-outline" data-fr="Voir la méthode" data-es="Ver la metodología">Voir la méthode</summary>
+    <div class="demo-video">
+      <video class="lang-fr active" src="assets/sa-demo-fr.mp4" poster="assets/sa-equipes-fr.png" controls preload="none" playsinline></video>
+      <video class="lang-es" src="assets/sa-demo-es.mp4" poster="assets/sa-equipes-es.png" controls preload="none" playsinline></video>
+      <video class="lang-en" src="assets/sa-demo-en.mp4" poster="assets/sa-equipes-en.png" controls preload="none" playsinline></video>
+    </div>
+    <p class="featured-note" data-fr="Version complète présentée en entretien." data-es="Versión completa presentada en entrevista." data-en="Full version shown in interviews.">Version complète présentée en entretien.</p>
+    <div class="shots">
+
+      <figure class="shot">
+        <a href="assets/sa-equipes-fr.png" target="_blank" class="lang-fr active"><img src="assets/sa-equipes-fr.png" alt="ScoutAnalytics — styles de jeu des équipes" loading="lazy"></a>
+        <a href="assets/sa-equipes-es.png" target="_blank" class="lang-es"><img src="assets/sa-equipes-es.png" alt="ScoutAnalytics — estilos de juego de los equipos" loading="lazy"></a>
+        <a href="assets/sa-equipes-en.png" target="_blank" class="lang-en"><img src="assets/sa-equipes-en.png" alt="ScoutAnalytics — team playing styles" loading="lazy"></a>
+        <figcaption data-fr="Styles de jeu des équipes" data-es="Estilos de juego de los equipos" data-en="Team playing styles">Styles de jeu des équipes</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <a href="assets/sa-classement-fr.png" target="_blank" class="lang-fr active"><img src="assets/sa-classement-fr.png" alt="ScoutAnalytics — classement contextuel des joueurs" loading="lazy"></a>
+        <a href="assets/sa-classement-es.png" target="_blank" class="lang-es"><img src="assets/sa-classement-es.png" alt="ScoutAnalytics — ranking contextual de jugadores" loading="lazy"></a>
+        <a href="assets/sa-classement-en.png" target="_blank" class="lang-en"><img src="assets/sa-classement-en.png" alt="ScoutAnalytics — contextual player rankings" loading="lazy"></a>
+        <figcaption data-fr="Classement contextuel des joueurs" data-es="Ranking contextual de jugadores" data-en="Contextual player rankings">Classement contextuel des joueurs</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <a href="assets/sa-radar-fr.png" target="_blank" class="lang-fr active"><img src="assets/sa-radar-fr.png" alt="ScoutAnalytics — radar de comparaison" loading="lazy"></a>
+        <a href="assets/sa-radar-es.png" target="_blank" class="lang-es"><img src="assets/sa-radar-es.png" alt="ScoutAnalytics — radar comparativo" loading="lazy"></a>
+        <a href="assets/sa-radar-en.png" target="_blank" class="lang-en"><img src="assets/sa-radar-en.png" alt="ScoutAnalytics — comparison radar" loading="lazy"></a>
+        <figcaption data-fr="Radar de comparaison" data-es="Radar comparativo" data-en="Comparison radar">Radar de comparaison</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <a href="assets/sa-recherche-fr.png" target="_blank" class="lang-fr active"><img src="assets/sa-recherche-fr.png" alt="ScoutAnalytics — recherche par profil" loading="lazy"></a>
+        <a href="assets/sa-recherche-es.png" target="_blank" class="lang-es"><img src="assets/sa-recherche-es.png" alt="ScoutAnalytics — búsqueda por perfil" loading="lazy"></a>
+        <a href="assets/sa-recherche-en.png" target="_blank" class="lang-en"><img src="assets/sa-recherche-en.png" alt="ScoutAnalytics — profile-based search" loading="lazy"></a>
+        <figcaption data-fr="Recherche par profil" data-es="Búsqueda por perfil" data-en="Profile-based search">Recherche par profil</figcaption>
+      </figure>
+
+    </div>
+    <details class="method-box">
+      <summary class="btn btn-outline" data-fr="Voir la méthode" data-es="Ver la metodología" data-en="View the method">Voir la méthode</summary>
       <div class="method-content">
-        <p data-fr="<strong>1. Classer les équipes par style de jeu.</strong> Chaque équipe est rattachée à un profil tactique à partir de ses données collectives. Les groupes sont calculés à partir des données elles-mêmes, et s'adaptent donc à n'importe quel championnat." data-es="<strong>1. Clasificar a los equipos por estilo de juego.</strong> Cada equipo se asocia a un perfil táctico a partir de sus datos colectivos. Los grupos se calculan a partir de los propios datos, por lo que se adaptan a cualquier competición.">
+        <p data-fr="<strong>1. Classer les équipes par style de jeu.</strong> Chaque équipe est rattachée à un profil tactique à partir de ses données collectives. Les groupes sont calculés à partir des données elles-mêmes, et s'adaptent donc à n'importe quel championnat." data-es="<strong>1. Clasificar a los equipos por estilo de juego.</strong> Cada equipo se asocia a un perfil táctico a partir de sus datos colectivos. Los grupos se calculan a partir de los propios datos, por lo que se adaptan a cualquier competición." data-en="<strong>1. Group teams by playing style.</strong> Each team is assigned a tactical profile based on its collective data. The groups are calculated from the data itself, so they adapt to any competition.">
           <strong>1. Classer les équipes par style de jeu.</strong> Chaque équipe est rattachée à un profil tactique à partir de ses données collectives. Les groupes sont calculés à partir des données elles-mêmes, et s'adaptent donc à n'importe quel championnat.
         </p>
-        <p data-fr="<strong>2. Comparer chaque joueur à ses vrais pairs.</strong> Un joueur est comparé aux joueurs de son poste, en tenant compte du style de jeu de son équipe. Ses statistiques sont ramenées aux mêmes échelles (par 90 minutes, puis en écart à la moyenne) pour que la comparaison soit juste." data-es="<strong>2. Comparar a cada jugador con sus verdaderos pares.</strong> Cada jugador se compara con los jugadores de su posición, teniendo en cuenta el estilo de juego de su equipo. Sus estadísticas se llevan a las mismas escalas (por 90 minutos y luego como desviación respecto a la media) para que la comparación sea justa.">
+        <p data-fr="<strong>2. Comparer chaque joueur à ses vrais pairs.</strong> Un joueur est comparé aux joueurs de son poste, en tenant compte du style de jeu de son équipe. Ses statistiques sont ramenées aux mêmes échelles (par 90 minutes, puis en écart à la moyenne) pour que la comparaison soit juste." data-es="<strong>2. Comparar a cada jugador con sus verdaderos pares.</strong> Cada jugador se compara con los jugadores de su posición, teniendo en cuenta el estilo de juego de su equipo. Sus estadísticas se llevan a las mismas escalas (por 90 minutos y luego como desviación respecto a la media) para que la comparación sea justa." data-en="<strong>2. Compare each player with their true peers.</strong> A player is compared with players in the same position, taking their team's playing style into account. Their stats are put on the same scales (per 90 minutes, then as deviation from the mean) so the comparison is fair.">
           <strong>2. Comparer chaque joueur à ses vrais pairs.</strong> Un joueur est comparé aux joueurs de son poste, en tenant compte du style de jeu de son équipe. Ses statistiques sont ramenées aux mêmes échelles (par 90 minutes, puis en écart à la moyenne) pour que la comparaison soit juste.
         </p>
-        <p data-fr="<strong>3. Construire des scores lisibles.</strong> Les indicateurs sont regroupés en composantes notées de 0 à 100 par poste, avec un plafonnement des valeurs extrêmes pour éviter qu'un seul match exceptionnel fausse tout." data-es="<strong>3. Construir puntuaciones legibles.</strong> Los indicadores se agrupan en componentes puntuados de 0 a 100 por posición, limitando los valores extremos para que un solo partido excepcional no lo distorsione todo.">
+        <p data-fr="<strong>3. Construire des scores lisibles.</strong> Les indicateurs sont regroupés en composantes notées de 0 à 100 par poste, avec un plafonnement des valeurs extrêmes pour éviter qu'un seul match exceptionnel fausse tout." data-es="<strong>3. Construir puntuaciones legibles.</strong> Los indicadores se agrupan en componentes puntuados de 0 a 100 por posición, limitando los valores extremos para que un solo partido excepcional no lo distorsione todo." data-en="<strong>3. Build readable scores.</strong> Indicators are grouped into components scored from 0 to 100 by position, with extreme values capped so that one exceptional match doesn't skew everything.">
           <strong>3. Construire des scores lisibles.</strong> Les indicateurs sont regroupés en composantes notées de 0 à 100 par poste, avec un plafonnement des valeurs extrêmes pour éviter qu'un seul match exceptionnel fausse tout.
         </p>
-        <p data-fr="<strong>4. Chercher selon le besoin du club.</strong> La recherche avancée permet de pondérer ces composantes pour trouver le profil voulu, et le radar compare jusqu'à trois joueurs côte à côte." data-es="<strong>4. Buscar según la necesidad del club.</strong> La búsqueda avanzada permite ponderar estos componentes para encontrar el perfil deseado, y el radar compara hasta tres jugadores lado a lado.">
+        <p data-fr="<strong>4. Chercher selon le besoin du club.</strong> La recherche avancée permet de pondérer ces composantes pour trouver le profil voulu, et le radar compare jusqu'à trois joueurs côte à côte." data-es="<strong>4. Buscar según la necesidad del club.</strong> La búsqueda avanzada permite ponderar estos componentes para encontrar el perfil deseado, y el radar compara hasta tres jugadores lado a lado." data-en="<strong>4. Search based on the club's needs.</strong> Advanced search lets you weight these components to find the profile you want, and the radar compares up to three players side by side.">
           <strong>4. Chercher selon le besoin du club.</strong> La recherche avancée permet de pondérer ces composantes pour trouver le profil voulu, et le radar compare jusqu'à trois joueurs côte à côte.
         </p>
       </div>
     </details>
-    <p class="featured-update" data-fr="Dernière mise à jour : septembre 2026" data-es="Última actualización: septiembre de 2026">Dernière mise à jour : septembre 2026</p>
+
+    <p class="featured-update" data-fr="Dernière mise à jour : septembre 2026" data-es="Última actualización: septiembre de 2026" data-en="Last updated: September 2026">Dernière mise à jour : septembre 2026</p>
   </div>
-    <!-- ===== ANALYSE D'ÉQUIPE (désactivée : enlever les marques de commentaire au premier projet) =====
+
+  <!-- ===== ANALYSE D'ÉQUIPE (désactivée : enlever les marques de commentaire au premier projet) =====
   <div class="projects-category">
-    <h3 class="projects-category-title" data-fr="Analyse d'équipe" data-es="Análisis de equipo">Analyse d'équipe</h3>
+    <h3 class="projects-category-title" data-fr="Analyse d'équipe" data-es="Análisis de equipo" data-en="Team analysis">Analyse d'équipe</h3>
     <div class="projects-grid">
 
     </div>
@@ -726,7 +833,7 @@
 
   <!-- ===== ANALYSE DE JOUEUR (désactivée : enlever les marques de commentaire au premier projet) =====
   <div class="projects-category">
-    <h3 class="projects-category-title" data-fr="Analyse de joueur" data-es="Análisis de jugador">Analyse de joueur</h3>
+    <h3 class="projects-category-title" data-fr="Analyse de joueur" data-es="Análisis de jugador" data-en="Player analysis">Analyse de joueur</h3>
     <div class="projects-grid">
 
     </div>
@@ -735,7 +842,7 @@
 
   <!-- ===== OUTILS DATA (désactivée : enlever les marques de commentaire au premier projet) =====
   <div class="projects-category">
-    <h3 class="projects-category-title" data-fr="Outils data" data-es="Herramientas de datos">Outils data</h3>
+    <h3 class="projects-category-title" data-fr="Outils data" data-es="Herramientas de datos" data-en="Data tools">Outils data</h3>
     <div class="projects-grid">
 
     </div>
@@ -747,34 +854,35 @@
 <hr class="divider"/>
 
 <section id="about">
-  <p class="section-label" data-fr="Profil" data-es="Perfil">Profil</p>
-  <h2 class="section-title" data-fr="À propos" data-es="Sobre mí">À propos</h2>
+  <p class="section-label" data-fr="Profil" data-es="Perfil" data-en="Profile">Profil</p>
+  <h2 class="section-title" data-fr="À propos" data-es="Sobre mí" data-en="About">À propos</h2>
 
   <div class="about-grid">
 
     <div class="about-text">
-      <p data-fr="Je travaille sur les deux faces de l'analyse : ce qu'on voit à la vidéo et ce que mesurent les données. Je découpe les matchs, j'exploite les données de match et j'en tire des rapports adverses, des profils de joueurs et des outils que le staff peut utiliser directement." data-es="Trabajo las dos caras del análisis: lo que se ve en el vídeo y lo que miden los datos. Hago los cortes de vídeo de los partidos, trabajo los datos de partido y los convierto en informes de rival, perfiles de jugadores y herramientas que el cuerpo técnico puede usar directamente.">
+      <p data-fr="Je travaille sur les deux faces de l'analyse : ce qu'on voit à la vidéo et ce que mesurent les données. Je découpe les matchs, j'exploite les données de match et j'en tire des rapports adverses, des profils de joueurs et des outils que le staff peut utiliser directement." data-es="Trabajo las dos caras del análisis: lo que se ve en el vídeo y lo que miden los datos. Hago los cortes de vídeo de los partidos, trabajo los datos de partido y los convierto en informes de rival, perfiles de jugadores y herramientas que el cuerpo técnico puede usar directamente." data-en="I work on both sides of analysis: what you see on video and what the data measures. I clip matches, work with match data and turn it into opponent reports, player profiles and tools the coaching staff can use straight away.">
         Je travaille sur les deux faces de l'analyse : ce qu'on voit à la vidéo et ce que mesurent les données. Je découpe les matchs, j'exploite les données de match et j'en tire des rapports adverses, des profils de joueurs et des outils que le staff peut utiliser directement.
       </p>
-      <p data-fr="Formé en sciences du sport (<strong>Licence STAPS</strong>, Université de Rouen) puis en data (<strong>Master Big Data Deportivo</strong>, Sports Data Campus, UCAM)." data-es="Formado en ciencias del deporte (<strong>Grado STAPS</strong>, Universidad de Rouen, equivalente a CAFYD) y después en datos (<strong>Máster Big Data Deportivo</strong>, Sports Data Campus, UCAM).">
+      <p data-fr="Formé en sciences du sport (<strong>Licence STAPS</strong>, Université de Rouen) puis en data (<strong>Master Big Data Deportivo</strong>, Sports Data Campus, UCAM)." data-es="Formado en ciencias del deporte (<strong>Grado STAPS</strong>, Universidad de Rouen, equivalente a CAFYD) y después en datos (<strong>Máster Big Data Deportivo</strong>, Sports Data Campus, UCAM)." data-en="Trained in sport science (<strong>Bachelor's degree in Sport and Exercise Science</strong> — STAPS, University of Rouen), then in data (<strong>Master's in Sports Big Data</strong>, Sports Data Campus, UCAM).">
         Formé en sciences du sport (<strong>Licence STAPS</strong>, Université de Rouen) puis en data (<strong>Master Big Data Deportivo</strong>, Sports Data Campus, UCAM).
       </p>
-      <p data-fr="Basé entre <strong>Le Havre</strong> et <strong>Cadix</strong>. Ouvert à la mobilité internationale." data-es="Vivo entre <strong>Le Havre</strong> y <strong>Cádiz</strong>. Disponibilidad para trasladarme a cualquier país.">
+      <p data-fr="Basé entre <strong>Le Havre</strong> et <strong>Cadix</strong>. Ouvert à la mobilité internationale." data-es="Vivo entre <strong>Le Havre</strong> y <strong>Cádiz</strong>. Disponibilidad para trasladarme a cualquier país." data-en="Based between <strong>Le Havre</strong> and <strong>Cádiz</strong>. Open to relocating internationally.">
         Basé entre <strong>Le Havre</strong> et <strong>Cadix</strong>. Ouvert à la mobilité internationale.
       </p>
-      <p data-fr="Français natif · Espagnol courant · Anglais intermédiaire." data-es="Francés nativo · Español fluido · Inglés intermedio.">
+      <p data-fr="Français natif · Espagnol courant · Anglais intermédiaire." data-es="Francés nativo · Español fluido · Inglés intermedio." data-en="French (native) · Spanish (fluent) · English (intermediate).">
         Français natif · Espagnol courant · Anglais intermédiaire.
       </p>
       <div style="margin-top: 1.5rem;">
+        <a href="assets/CV_Tom_Hamel_FR.pdf" target="_blank" class="btn btn-primary lang-fr active">Télécharger CV</a>
         <a href="assets/CV_Tom_Hamel_ES.pdf" target="_blank" class="btn btn-primary lang-es">Descargar CV</a>
-        <a href="assets/CV_Tom_Hamel_ES.pdf" target="_blank" class="btn btn-primary lang-fr active">Télécharger CV</a>
+        <a href="assets/CV_Tom_Hamel_EN.pdf" target="_blank" class="btn btn-primary lang-en">Download CV</a>
       </div>
     </div>
 
     <div class="about-skills">
 
       <div class="skills-group">
-        <p class="skills-group-title" data-fr="Analyse vidéo" data-es="Análisis de vídeo">Analyse vidéo</p>
+        <p class="skills-group-title" data-fr="Analyse vidéo" data-es="Análisis de vídeo" data-en="Video analysis">Analyse vidéo</p>
         <div class="skills-tags">
           <span class="tag">Metrica Sports</span>
           <span class="tag">Wyscout</span>
@@ -784,7 +892,7 @@
       </div>
 
       <div class="skills-group">
-        <p class="skills-group-title" data-fr="Données football" data-es="Datos de fútbol">Données football</p>
+        <p class="skills-group-title" data-fr="Données football" data-es="Datos de fútbol" data-en="Football data">Données football</p>
         <div class="skills-tags">
           <span class="tag">Wyscout</span>
           <span class="tag">StatsBomb</span>
@@ -794,7 +902,7 @@
       </div>
 
       <div class="skills-group">
-        <p class="skills-group-title" data-fr="Analyse de données" data-es="Análisis de datos">Analyse de données</p>
+        <p class="skills-group-title" data-fr="Analyse de données" data-es="Análisis de datos" data-en="Data analysis">Analyse de données</p>
         <div class="skills-tags">
           <span class="tag">Python</span>
           <span class="tag">Pandas</span>
@@ -807,7 +915,7 @@
       </div>
 
       <div class="skills-group">
-        <p class="skills-group-title" data-fr="Visualisation & outils" data-es="Visualización y herramientas">Visualisation & outils</p>
+        <p class="skills-group-title" data-fr="Visualisation & outils" data-es="Visualización y herramientas" data-en="Visualisation & tools">Visualisation & outils</p>
         <div class="skills-tags">
           <span class="tag">Matplotlib</span>
           <span class="tag">Seaborn</span>
@@ -829,20 +937,21 @@
 
   </div>
 </section>
+
 <hr class="divider"/>
 
 <section id="contact">
-  <p class="section-label" data-fr="Contact" data-es="Contacto">Contact</p>
-  <h2 class="section-title" data-fr="Me contacter" data-es="Contactarme">Me contacter</h2>
+  <p class="section-label" data-fr="Contact" data-es="Contacto" data-en="Contact">Contact</p>
+  <h2 class="section-title" data-fr="Me contacter" data-es="Contactarme" data-en="Get in touch">Me contacter</h2>
 
   <div class="contact-wrapper">
-            <div class="contact-text">
-      <p data-fr="Disponibilité immédiate pour un poste en analyse de performance, scouting, analyse vidéo ou analyse de données." data-es="Disponibilidad inmediata para un puesto de análisis de rendimiento, scouting, análisis de vídeo o análisis de datos.">
+    <div class="contact-text">
+      <p data-fr="Disponibilité immédiate pour un poste en analyse de performance, scouting, analyse vidéo ou analyse de données." data-es="Disponibilidad inmediata para un puesto de análisis de rendimiento, scouting, análisis de vídeo o análisis de datos." data-en="Available immediately for a role in performance analysis, scouting, video analysis or data analysis.">
         Disponibilité immédiate pour un poste en analyse de performance, scouting, analyse vidéo ou analyse de données.
       </p>
     </div>
 
-        <div class="contact-links">
+    <div class="contact-links">
       <a href="mailto:tom.hamel76@gmail.com" class="contact-link">
         <span class="contact-link-icon">✉</span>
         <div class="contact-link-info">
@@ -867,36 +976,49 @@
     </div>
   </div>
 </section>
+
 <footer>
   <p>© 2026 Tom Hamel</p>
-  <p data-fr="Analyste de performance · Data · Vidéo" data-es="Analista táctico · Datos · Vídeo">Analyste de performance · Data · Vidéo</p>
+  <p data-fr="Analyste de performance · Data · Vidéo" data-es="Analista táctico · Datos · Vídeo" data-en="Performance Analyst · Data · Video">Analyste de performance · Data · Vidéo</p>
 </footer>
 
 <script>
+  const LANGS = ['fr', 'es', 'en'];
+
   const pageTitles = {
     fr: 'Tom Hamel · Analyste de performance',
-    es: 'Tom Hamel · Analista táctico'
+    es: 'Tom Hamel · Analista táctico',
+    en: 'Tom Hamel · Performance Analyst'
   };
 
-  function setLang(lang, event) {
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+  function setLang(lang) {
+    if (!LANGS.includes(lang)) return;
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
 
     document.querySelectorAll('[data-fr]').forEach(el => {
       const text = el.getAttribute(`data-${lang}`);
       if (text) el.innerHTML = text;
     });
 
-    document.querySelectorAll('.lang-fr').forEach(el => {
-      el.classList.toggle('active', lang === 'fr');
-    });
-    document.querySelectorAll('.lang-es').forEach(el => {
-      el.classList.toggle('active', lang === 'es');
+    document.querySelectorAll('video').forEach(v => v.pause());
+
+    LANGS.forEach(l => {
+      document.querySelectorAll(`.lang-${l}`).forEach(el => {
+        el.classList.toggle('active', l === lang);
+      });
     });
 
     document.documentElement.lang = lang;
     document.title = pageTitles[lang];
   }
+
+  // Langue choisie par l'adresse : tomhamel.github.io/?lang=en ou ?lang=es
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  if (LANGS.includes(urlLang)) setLang(urlLang);
+</script>
 </script>
 
 </body>
