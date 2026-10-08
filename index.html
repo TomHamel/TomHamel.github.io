@@ -681,6 +681,30 @@
       .nav-links { gap: 0.8rem; }
       .nav-links li:not(:last-child) { display: none; }
       .lang-btn { font-size: 0.75rem; padding: 0.2rem 0.4rem; }
+          .project-video {
+      margin-bottom: 1.5rem;
+    }
+
+    .project-video video {
+      display: block;
+      width: 100%;
+      max-width: 800px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #000;
+    }
+
+    .video-lang {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .project-card { padding: 1.5rem; }
+      .project-number { font-size: 2.5rem; top: 1rem; right: 1.2rem; }
+    }
 
       .hero { padding: 6rem 1.5rem 3rem; }
       .hero { min-height: auto; padding-top: 8rem; padding-bottom: 4rem; }
@@ -822,14 +846,36 @@
     <p class="featured-update" data-fr="Dernière mise à jour : septembre 2026" data-es="Última actualización: septiembre de 2026" data-en="Last updated: September 2026">Dernière mise à jour : septembre 2026</p>
   </div>
 
-  <!-- ===== ANALYSE D'ÉQUIPE (désactivée : enlever les marques de commentaire au premier projet) =====
+  <!-- ===== ANALYSE D'ÉQUIPE ===== -->
   <div class="projects-category">
     <h3 class="projects-category-title" data-fr="Analyse d'équipe" data-es="Análisis de equipo" data-en="Team analysis">Analyse d'équipe</h3>
     <div class="projects-grid">
 
+      <div class="project-card">
+        <div class="project-main">
+          <p class="project-tag" data-fr="Analyse tactique · Ligue 1 · 2025-26" data-es="Análisis táctico · Ligue 1 · 2025-26" data-en="Tactical analysis · Ligue 1 · 2025-26">Analyse tactique · Ligue 1 · 2025-26</p>
+          <h4 class="project-title" data-fr="Olympique Lyonnais — La relance face au marquage individuel" data-es="Olympique de Lyon — La salida de balón frente al marcaje individual" data-en="Olympique Lyonnais — Building up against man-to-man pressing">Olympique Lyonnais — La relance face au marquage individuel</h4>
+          <p class="project-desc" data-fr="Comment Lyon relance face au marquage individuel du Havre. En intégrant le gardien à la construction, l'OL joue à 11 contre 10 : les deux défenseurs centraux se placent dans la surface et créent un 3 contre 2 dès le début de l'action. Il y a donc toujours un homme libre, et Lyon le trouve souvent." data-es="Cómo construye el Lyon frente al marcaje individual del Le Havre. Al integrar al portero en la salida, el OL juega 11 contra 10: los dos centrales se colocan dentro del área y generan un 3 contra 2 desde el inicio de la jugada. Siempre aparece un hombre libre, y el Lyon lo encuentra con frecuencia." data-en="How Lyon build up against Le Havre's man-to-man press. By involving the goalkeeper, Lyon play 11 v 10: both centre-backs drop into the box and create a 3 v 2 from the first pass. There is always a free man, and Lyon find him consistently.">
+            Comment Lyon relance face au marquage individuel du Havre. En intégrant le gardien à la construction, l'OL joue à 11 contre 10 : les deux défenseurs centraux se placent dans la surface et créent un 3 contre 2 dès le début de l'action. Il y a donc toujours un homme libre, et Lyon le trouve souvent.
+          </p>
+          <div class="project-video">
+            <video src="assets/lyon-relance.mp4#t=0.5" controls preload="metadata" playsinline></video>
+            <p class="video-lang lang-es">Vídeo en francés</p>
+            <p class="video-lang lang-en">Video in French</p>
+          </div>
+          <div class="project-tags">
+            <span class="tag" data-fr="Analyse vidéo" data-es="Análisis de vídeo" data-en="Video analysis">Analyse vidéo</span>
+            <span class="tag" data-fr="Phase de construction" data-es="Salida de balón" data-en="Build-up play">Phase de construction</span>
+            <span class="tag">Ligue 1</span>
+            <span class="tag">Wyscout</span>
+            <span class="tag">iMovie</span>
+          </div>
+        </div>
+        <div class="project-number">01</div>
+      </div>
+
     </div>
   </div>
-  ===== FIN ANALYSE D'ÉQUIPE ===== -->
 
   <!-- ===== ANALYSE DE JOUEUR (désactivée : enlever les marques de commentaire au premier projet) =====
   <div class="projects-category">
