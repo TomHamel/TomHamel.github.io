@@ -515,10 +515,6 @@
       padding: 0.9rem 1.2rem;
     }
 
-    .pipeline-step.main {
-      border-color: var(--text);
-    }
-
     .pipeline-name {
       font-family: 'DM Mono', monospace;
       font-size: 0.8rem;
@@ -647,6 +643,41 @@
       transition: transform 0.2s, border-color 0.2s;
     }
 
+    .shot video {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1440 / 812;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #0B101B;
+    }
+
+    /* Boucles ScoutAnalytics : une seule tourne, les autres sont atténuées */
+    .shots-loops .shot {
+      cursor: pointer;
+      opacity: 0.4;
+      transition: opacity 0.3s;
+    }
+
+    .shots-loops .shot video {
+      outline: 2px solid transparent;
+      outline-offset: 3px;
+      transition: outline-color 0.3s;
+    }
+
+    .shots-loops .shot.playing {
+      opacity: 1;
+    }
+
+    .shots-loops .shot.playing video {
+      outline-color: var(--text);
+    }
+
+    .shots-loops .shot.playing figcaption {
+      color: var(--text);
+    }
+
     .shot a:hover img {
       transform: translateY(-3px);
       border-color: var(--text);
@@ -681,7 +712,23 @@
       .nav-links { gap: 0.8rem; }
       .nav-links li:not(:last-child) { display: none; }
       .lang-btn { font-size: 0.75rem; padding: 0.2rem 0.4rem; }
-          .project-video {
+      .hero { padding: 6rem 1.5rem 3rem; }
+      .hero { min-height: auto; padding-top: 8rem; padding-bottom: 4rem; }
+      section { padding: 4rem 1.5rem; }
+      .section-title { margin-bottom: 2rem; }
+
+      .featured-project { padding: 1.5rem; }
+      .featured-title { font-size: 2.4rem; }
+      .method-content { padding: 1.2rem; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-text, .about-skills { grid-column: 1; grid-row: auto; }
+
+      .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+
+      footer { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 1.5rem; }
+    }
+    .project-video {
       margin-bottom: 1.5rem;
     }
 
@@ -689,6 +736,7 @@
       display: block;
       width: 100%;
       max-width: 800px;
+      height: auto;
       border: 1px solid var(--border);
       border-radius: 6px;
       background: #000;
@@ -706,21 +754,47 @@
       .project-number { font-size: 2.5rem; top: 1rem; right: 1.2rem; }
     }
 
-      .hero { padding: 6rem 1.5rem 3rem; }
-      .hero { min-height: auto; padding-top: 8rem; padding-bottom: 4rem; }
-      section { padding: 4rem 1.5rem; }
-      .section-title { margin-bottom: 2rem; }
-
-      .featured-project { padding: 1.5rem; }
-      .featured-title { font-size: 2.4rem; }
-      .method-content { padding: 1.2rem; }
-
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .about-text, .about-skills { grid-column: 1; grid-row: auto; }
-
-      .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
-
-      footer { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 1.5rem; }
+    /* Bloc ScoutAnalytics (octobre 2026) : accroche, usages, « Ce que j'ai réalisé » */
+    .featured-title { margin-bottom: 0.4rem; }
+    .featured-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .featured-desc p { margin-bottom: 0.8rem; }
+    .featured-usages-title { margin-bottom: 0.4rem !important; }
+    .featured-usages, .built-list { padding-left: 1.2rem; margin-bottom: 1rem; }
+    .featured-usages li, .built-list li { margin-bottom: 0.4rem; }
+    .featured-usages strong, .featured-key strong, .built-list strong { color: var(--text); font-weight: 500; }
+    .built-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .built-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+    }
+    .built-list { color: var(--muted); font-size: 0.9rem; }
+    .built-box .project-tags { margin-bottom: 0.4rem; }
+    @media (min-width: 901px) {
+      .pipeline { align-items: stretch; }
+      .pipeline-step { flex: 1 1 0; display: flex; flex-direction: column; justify-content: center; }
+      .pipeline-arrow { align-self: center; }
+    }
+    @media (max-width: 900px) {
+      .pipeline { flex-direction: column; align-items: stretch; }
+      .pipeline-arrow { align-self: center; transform: rotate(90deg); }
+    }
+    @media (max-width: 768px) {
+      .built-box { padding: 1.2rem; }
     }
   </style>
 </head>
@@ -767,83 +841,104 @@
   <div class="featured-project">
     <p class="featured-label" data-fr="Outil principal" data-es="Herramienta principal" data-en="Main tool">Outil principal</p>
     <h3 class="featured-title">ScoutAnalytics</h3>
+    <p class="featured-sub" data-fr="Analyse football · Données · Développement" data-es="Análisis de fútbol · Datos · Desarrollo" data-en="Football analysis · Data · Development">Analyse football · Données · Développement</p>
 
-    <p class="featured-desc" data-fr="ScoutAnalytics réunit dans un seul outil les données des équipes et des joueurs, sur un ou plusieurs championnats. Côté équipes : style de jeu, performance collective, comparaison entre adversaires. Côté joueurs : classements par poste, radars de comparaison, recherche par profil. Et les deux sont liés : chaque joueur est évalué dans le contexte tactique de son équipe." data-es="ScoutAnalytics reúne en una sola herramienta los datos de equipos y jugadores, de una o varias competiciones. En equipos: estilo de juego, rendimiento colectivo, comparación entre rivales. En jugadores: rankings por posición, radares comparativos y búsqueda por perfil. Y ambos están conectados: cada jugador se evalúa en el contexto táctico de su equipo." data-en="ScoutAnalytics brings team and player data together in a single tool, across one or more competitions. Teams: playing style, collective performance, opponent comparison. Players: rankings by position, comparison radars, profile-based search. And the two are linked: every player is assessed in the tactical context of their team.">
-      ScoutAnalytics réunit dans un seul outil les données des équipes et des joueurs, sur un ou plusieurs championnats. Côté équipes : style de jeu, performance collective, comparaison entre adversaires. Côté joueurs : classements par poste, radars de comparaison, recherche par profil. Et les deux sont liés : chaque joueur est évalué dans le contexte tactique de son équipe.
-    </p>
+    <div class="featured-desc">
+      <p data-fr="ScoutAnalytics est un outil d&#x27;analyse complet, construit pour le football à partir des données Wyscout. Comme un tableau de bord Power BI ou Tableau, il réunit au même endroit les données d&#x27;un ou plusieurs championnats. Mais il fait aussi l&#x27;analyse : chaque statistique est replacée parmi celles des joueurs du même poste, et dans le contexte de jeu de l&#x27;équipe." data-es="ScoutAnalytics es una herramienta de análisis completa, creada para el fútbol a partir de los datos de Wyscout. Como un cuadro de mando de Power BI o Tableau, reúne en un mismo lugar los datos de una o varias competiciones. Pero además hace el análisis: cada estadística se sitúa entre las de los jugadores de la misma posición y en el contexto de juego del equipo." data-en="ScoutAnalytics is a complete analysis tool, built for football on Wyscout data. Like a Power BI or Tableau dashboard, it brings data from one or more leagues together in one place. But it also does the analysis: every statistic is placed among those of players in the same position, and in the context of the team&#x27;s style of play.">ScoutAnalytics est un outil d'analyse complet, construit pour le football à partir des données Wyscout. Comme un tableau de bord Power BI ou Tableau, il réunit au même endroit les données d'un ou plusieurs championnats. Mais il fait aussi l'analyse : chaque statistique est replacée parmi celles des joueurs du même poste, et dans le contexte de jeu de l'équipe.</p>
+      <p class="featured-usages-title" data-fr="Il sert à :" data-es="Sirve para:" data-en="It is used to:">Il sert à :</p>
+      <ul class="featured-usages">
+        <li data-fr="&lt;strong&gt;analyser une équipe&lt;/strong&gt;, la sienne ou un adversaire : identité de jeu, performance collective, comparaison ;" data-es="&lt;strong&gt;analizar un equipo&lt;/strong&gt;, el propio o un rival: identidad de juego, rendimiento colectivo, comparación;" data-en="&lt;strong&gt;analyse a team&lt;/strong&gt;, your own or an opponent: playing identity, collective performance, comparison;"><strong>analyser une équipe</strong>, la sienne ou un adversaire : identité de jeu, performance collective, comparaison ;</li>
+        <li data-fr="&lt;strong&gt;analyser un joueur&lt;/strong&gt; : profil complet, points forts et points faibles, comparaison, joueurs similaires ;" data-es="&lt;strong&gt;analizar un jugador&lt;/strong&gt;: perfil completo, puntos fuertes y débiles, comparación, jugadores similares;" data-en="&lt;strong&gt;analyse a player&lt;/strong&gt;: full profile, strengths and weaknesses, comparison, similar players;"><strong>analyser un joueur</strong> : profil complet, points forts et points faibles, comparaison, joueurs similaires ;</li>
+        <li data-fr="&lt;strong&gt;chercher un joueur&lt;/strong&gt; selon les besoins du club." data-es="&lt;strong&gt;buscar un jugador&lt;/strong&gt; según las necesidades del club." data-en="&lt;strong&gt;find a player&lt;/strong&gt; based on the club&#x27;s needs."><strong>chercher un joueur</strong> selon les besoins du club.</li>
+      </ul>
+      <p class="featured-key" data-fr="&lt;strong&gt;L&#x27;outil ne décide pas à la place du club ce qu&#x27;est un bon joueur.&lt;/strong&gt; Il n&#x27;y a pas de note universelle : chaque joueur est décrit dimension par dimension, et la recherche classe les joueurs selon les priorités que le club fixe lui-même. Pour un même poste, deux clubs aux besoins différents obtiennent deux classements différents, et chacun trouve le bon joueur pour lui." data-es="&lt;strong&gt;La herramienta no decide por el club qué es un buen jugador.&lt;/strong&gt; No hay una nota universal: cada jugador se describe dimensión por dimensión, y la búsqueda ordena a los jugadores según las prioridades que fija el propio club. Para una misma posición, dos clubes con necesidades distintas obtienen dos clasificaciones distintas, y cada uno encuentra el jugador adecuado para él." data-en="&lt;strong&gt;The tool does not decide for the club what a good player is.&lt;/strong&gt; There is no universal score: each player is described dimension by dimension, and the search ranks players according to the priorities the club sets itself. For the same position, two clubs with different needs get two different rankings, and each finds the right player for them."><strong>L'outil ne décide pas à la place du club ce qu'est un bon joueur.</strong> Il n'y a pas de note universelle : chaque joueur est décrit dimension par dimension, et la recherche classe les joueurs selon les priorités que le club fixe lui-même. Pour un même poste, deux clubs aux besoins différents obtiennent deux classements différents, et chacun trouve le bon joueur pour lui.</p>
+    </div>
 
     <div class="pipeline">
       <div class="pipeline-step">
-        <p class="pipeline-name" data-fr="Données de match" data-es="Datos de partido" data-en="Match data">Données de match</p>
-        <p class="pipeline-detail">Wyscout</p>
-      </div>
-      <span class="pipeline-arrow">→</span>
-      <div class="pipeline-step main">
-        <p class="pipeline-name">ScoutAnalytics</p>
-        <p class="pipeline-detail" data-fr="Pipeline Python · Scoring contextuel · Dashboard" data-es="Pipeline Python · Scoring contextual · Dashboard" data-en="Python pipeline · Contextual scoring · Dashboard">Pipeline Python · Scoring contextuel · Dashboard</p>
+        <p class="pipeline-name" data-fr="Données Wyscout" data-es="Datos Wyscout" data-en="Wyscout data">Données Wyscout</p>
+        <p class="pipeline-detail" data-fr="Joueurs · Équipes · Matchs" data-es="Jugadores · Equipos · Partidos" data-en="Players · Teams · Matches">Joueurs · Équipes · Matchs</p>
       </div>
       <span class="pipeline-arrow">→</span>
       <div class="pipeline-step">
-        <p class="pipeline-name" data-fr="Analyse d'équipe · Analyse de joueur · Rapports & vidéos" data-es="Análisis de equipo · Análisis de jugador · Informes y vídeos" data-en="Team analysis · Player analysis · Reports & videos">Analyse d'équipe · Analyse de joueur · Rapports & vidéos</p>
+        <p class="pipeline-name" data-fr="Import contrôlé" data-es="Importación controlada" data-en="Controlled import">Import contrôlé</p>
+        <p class="pipeline-detail" data-fr="Python · Vérifications · Journal" data-es="Python · Verificaciones · Registro" data-en="Python · Checks · Log">Python · Vérifications · Journal</p>
+      </div>
+      <span class="pipeline-arrow">→</span>
+      <div class="pipeline-step">
+        <p class="pipeline-name" data-fr="Base SQL" data-es="Base de datos SQL" data-en="SQL database">Base SQL</p>
+        <p class="pipeline-detail" data-fr="SQLite · Plusieurs saisons et championnats" data-es="SQLite · Varias temporadas y competiciones" data-en="SQLite · Multiple seasons and leagues">SQLite · Plusieurs saisons et championnats</p>
+      </div>
+      <span class="pipeline-arrow">→</span>
+      <div class="pipeline-step">
+        <p class="pipeline-name" data-fr="Analyse" data-es="Análisis" data-en="Analysis">Analyse</p>
+        <p class="pipeline-detail" data-fr="Comparaisons par poste · Contexte de jeu · Identité des équipes" data-es="Comparación por posición · Contexto de juego · Identidad de los equipos" data-en="Position-based comparison · Game context · Team identity">Comparaisons par poste · Contexte de jeu · Identité des équipes</p>
+      </div>
+      <span class="pipeline-arrow">→</span>
+      <div class="pipeline-step">
+        <p class="pipeline-name" data-fr="Dashboard" data-es="Dashboard" data-en="Dashboard">Dashboard</p>
+        <p class="pipeline-detail" data-fr="Équipes · Joueurs · Recherche" data-es="Equipos · Jugadores · Búsqueda" data-en="Teams · Players · Search">Équipes · Joueurs · Recherche</p>
       </div>
     </div>
 
     <div class="demo-video">
-      <video class="lang-fr active" src="assets/sa-demo-fr.mp4" poster="assets/sa-equipes-fr.png" controls preload="none" playsinline></video>
-      <video class="lang-es" src="assets/sa-demo-es.mp4" poster="assets/sa-equipes-es.png" controls preload="none" playsinline></video>
-      <video class="lang-en" src="assets/sa-demo-en.mp4" poster="assets/sa-equipes-en.png" controls preload="none" playsinline></video>
+      <video class="lang-fr active" src="assets/sa-demo-fr.mp4" poster="assets/sa-demo-fr.jpg" controls preload="none" playsinline></video>
+      <video class="lang-es" src="assets/sa-demo-es.mp4" poster="assets/sa-demo-es.jpg" controls preload="none" playsinline></video>
+      <video class="lang-en" src="assets/sa-demo-en.mp4" poster="assets/sa-demo-en.jpg" controls preload="none" playsinline></video>
     </div>
     <p class="featured-note" data-fr="Version complète présentée en entretien." data-es="Versión completa presentada en entrevista." data-en="Full version shown in interviews.">Version complète présentée en entretien.</p>
-    <div class="shots">
+    <div class="shots shots-loops">
 
       <figure class="shot">
-        <a href="assets/sa-equipes-fr.png" target="_blank" class="lang-fr active"><img src="assets/sa-equipes-fr.png" alt="ScoutAnalytics — styles de jeu des équipes" loading="lazy"></a>
-        <a href="assets/sa-equipes-es.png" target="_blank" class="lang-es"><img src="assets/sa-equipes-es.png" alt="ScoutAnalytics — estilos de juego de los equipos" loading="lazy"></a>
-        <a href="assets/sa-equipes-en.png" target="_blank" class="lang-en"><img src="assets/sa-equipes-en.png" alt="ScoutAnalytics — team playing styles" loading="lazy"></a>
-        <figcaption data-fr="Styles de jeu des équipes" data-es="Estilos de juego de los equipos" data-en="Team playing styles">Styles de jeu des équipes</figcaption>
+        <video class="sa-loop lang-fr active" src="assets/sa-boucle-equipe-fr.mp4" poster="assets/sa-boucle-equipe-fr.jpg" muted playsinline preload="none"></video>
+        <video class="sa-loop lang-es" src="assets/sa-boucle-equipe-es.mp4" poster="assets/sa-boucle-equipe-es.jpg" muted playsinline preload="none"></video>
+        <video class="sa-loop lang-en" src="assets/sa-boucle-equipe-en.mp4" poster="assets/sa-boucle-equipe-en.jpg" muted playsinline preload="none"></video>
+        <figcaption data-fr="Du classement au profil d&#x27;équipe" data-es="De la clasificación al perfil del equipo" data-en="From ranking to team profile">Du classement au profil d'équipe</figcaption>
       </figure>
 
       <figure class="shot">
-        <a href="assets/sa-classement-fr.png" target="_blank" class="lang-fr active"><img src="assets/sa-classement-fr.png" alt="ScoutAnalytics — classement contextuel des joueurs" loading="lazy"></a>
-        <a href="assets/sa-classement-es.png" target="_blank" class="lang-es"><img src="assets/sa-classement-es.png" alt="ScoutAnalytics — ranking contextual de jugadores" loading="lazy"></a>
-        <a href="assets/sa-classement-en.png" target="_blank" class="lang-en"><img src="assets/sa-classement-en.png" alt="ScoutAnalytics — contextual player rankings" loading="lazy"></a>
-        <figcaption data-fr="Classement contextuel des joueurs" data-es="Ranking contextual de jugadores" data-en="Contextual player rankings">Classement contextuel des joueurs</figcaption>
+        <video class="sa-loop lang-fr active" src="assets/sa-boucle-joueur-recherche-fr.mp4" poster="assets/sa-boucle-joueur-recherche-fr.jpg" muted playsinline preload="none"></video>
+        <video class="sa-loop lang-es" src="assets/sa-boucle-joueur-recherche-es.mp4" poster="assets/sa-boucle-joueur-recherche-es.jpg" muted playsinline preload="none"></video>
+        <video class="sa-loop lang-en" src="assets/sa-boucle-joueur-recherche-en.mp4" poster="assets/sa-boucle-joueur-recherche-en.jpg" muted playsinline preload="none"></video>
+        <figcaption data-fr="Trouver un joueur" data-es="Encontrar un jugador" data-en="Finding a player">Trouver un joueur</figcaption>
       </figure>
 
       <figure class="shot">
-        <a href="assets/sa-radar-fr.png" target="_blank" class="lang-fr active"><img src="assets/sa-radar-fr.png" alt="ScoutAnalytics — radar de comparaison" loading="lazy"></a>
-        <a href="assets/sa-radar-es.png" target="_blank" class="lang-es"><img src="assets/sa-radar-es.png" alt="ScoutAnalytics — radar comparativo" loading="lazy"></a>
-        <a href="assets/sa-radar-en.png" target="_blank" class="lang-en"><img src="assets/sa-radar-en.png" alt="ScoutAnalytics — comparison radar" loading="lazy"></a>
-        <figcaption data-fr="Radar de comparaison" data-es="Radar comparativo" data-en="Comparison radar">Radar de comparaison</figcaption>
+        <video class="sa-loop lang-fr active" src="assets/sa-boucle-joueur-similaires-fr.mp4" poster="assets/sa-boucle-joueur-similaires-fr.jpg" muted playsinline preload="none"></video>
+        <video class="sa-loop lang-es" src="assets/sa-boucle-joueur-similaires-es.mp4" poster="assets/sa-boucle-joueur-similaires-es.jpg" muted playsinline preload="none"></video>
+        <video class="sa-loop lang-en" src="assets/sa-boucle-joueur-similaires-en.mp4" poster="assets/sa-boucle-joueur-similaires-en.jpg" muted playsinline preload="none"></video>
+        <figcaption data-fr="Joueurs similaires et comparaison" data-es="Jugadores similares y comparación" data-en="Similar players and comparison">Joueurs similaires et comparaison</figcaption>
       </figure>
 
       <figure class="shot">
-        <a href="assets/sa-recherche-fr.png" target="_blank" class="lang-fr active"><img src="assets/sa-recherche-fr.png" alt="ScoutAnalytics — recherche par profil" loading="lazy"></a>
-        <a href="assets/sa-recherche-es.png" target="_blank" class="lang-es"><img src="assets/sa-recherche-es.png" alt="ScoutAnalytics — búsqueda por perfil" loading="lazy"></a>
-        <a href="assets/sa-recherche-en.png" target="_blank" class="lang-en"><img src="assets/sa-recherche-en.png" alt="ScoutAnalytics — profile-based search" loading="lazy"></a>
-        <figcaption data-fr="Recherche par profil" data-es="Búsqueda por perfil" data-en="Profile-based search">Recherche par profil</figcaption>
+        <video class="sa-loop lang-fr active" src="assets/sa-boucle-recherche-fr.mp4" poster="assets/sa-boucle-recherche-fr.jpg" muted playsinline preload="none"></video>
+        <video class="sa-loop lang-es" src="assets/sa-boucle-recherche-es.mp4" poster="assets/sa-boucle-recherche-es.jpg" muted playsinline preload="none"></video>
+        <video class="sa-loop lang-en" src="assets/sa-boucle-recherche-en.mp4" poster="assets/sa-boucle-recherche-en.jpg" muted playsinline preload="none"></video>
+        <figcaption data-fr="Recherche de profils pondérée" data-es="Búsqueda de perfiles ponderada" data-en="Weighted profile search">Recherche de profils pondérée</figcaption>
       </figure>
 
     </div>
-    <details class="method-box">
-      <summary class="btn btn-outline" data-fr="Voir la méthode" data-es="Ver la metodología" data-en="View the method">Voir la méthode</summary>
-      <div class="method-content">
-        <p data-fr="<strong>1. Classer les équipes par style de jeu.</strong> Chaque équipe est rattachée à un profil tactique à partir de ses données collectives. Les groupes sont calculés à partir des données elles-mêmes, et s'adaptent donc à n'importe quel championnat." data-es="<strong>1. Clasificar a los equipos por estilo de juego.</strong> Cada equipo se asocia a un perfil táctico a partir de sus datos colectivos. Los grupos se calculan a partir de los propios datos, por lo que se adaptan a cualquier competición." data-en="<strong>1. Group teams by playing style.</strong> Each team is assigned a tactical profile based on its collective data. The groups are calculated from the data itself, so they adapt to any competition.">
-          <strong>1. Classer les équipes par style de jeu.</strong> Chaque équipe est rattachée à un profil tactique à partir de ses données collectives. Les groupes sont calculés à partir des données elles-mêmes, et s'adaptent donc à n'importe quel championnat.
-        </p>
-        <p data-fr="<strong>2. Comparer chaque joueur à ses vrais pairs.</strong> Un joueur est comparé aux joueurs de son poste, en tenant compte du style de jeu de son équipe. Ses statistiques sont ramenées aux mêmes échelles (par 90 minutes, puis en écart à la moyenne) pour que la comparaison soit juste." data-es="<strong>2. Comparar a cada jugador con sus verdaderos pares.</strong> Cada jugador se compara con los jugadores de su posición, teniendo en cuenta el estilo de juego de su equipo. Sus estadísticas se llevan a las mismas escalas (por 90 minutos y luego como desviación respecto a la media) para que la comparación sea justa." data-en="<strong>2. Compare each player with their true peers.</strong> A player is compared with players in the same position, taking their team's playing style into account. Their stats are put on the same scales (per 90 minutes, then as deviation from the mean) so the comparison is fair.">
-          <strong>2. Comparer chaque joueur à ses vrais pairs.</strong> Un joueur est comparé aux joueurs de son poste, en tenant compte du style de jeu de son équipe. Ses statistiques sont ramenées aux mêmes échelles (par 90 minutes, puis en écart à la moyenne) pour que la comparaison soit juste.
-        </p>
-        <p data-fr="<strong>3. Construire des scores lisibles.</strong> Les indicateurs sont regroupés en composantes notées de 0 à 100 par poste, avec un plafonnement des valeurs extrêmes pour éviter qu'un seul match exceptionnel fausse tout." data-es="<strong>3. Construir puntuaciones legibles.</strong> Los indicadores se agrupan en componentes puntuados de 0 a 100 por posición, limitando los valores extremos para que un solo partido excepcional no lo distorsione todo." data-en="<strong>3. Build readable scores.</strong> Indicators are grouped into components scored from 0 to 100 by position, with extreme values capped so that one exceptional match doesn't skew everything.">
-          <strong>3. Construire des scores lisibles.</strong> Les indicateurs sont regroupés en composantes notées de 0 à 100 par poste, avec un plafonnement des valeurs extrêmes pour éviter qu'un seul match exceptionnel fausse tout.
-        </p>
-        <p data-fr="<strong>4. Chercher selon le besoin du club.</strong> La recherche avancée permet de pondérer ces composantes pour trouver le profil voulu, et le radar compare jusqu'à trois joueurs côte à côte." data-es="<strong>4. Buscar según la necesidad del club.</strong> La búsqueda avanzada permite ponderar estos componentes para encontrar el perfil deseado, y el radar compara hasta tres jugadores lado a lado." data-en="<strong>4. Search based on the club's needs.</strong> Advanced search lets you weight these components to find the profile you want, and the radar compares up to three players side by side.">
-          <strong>4. Chercher selon le besoin du club.</strong> La recherche avancée permet de pondérer ces composantes pour trouver le profil voulu, et le radar compare jusqu'à trois joueurs côte à côte.
-        </p>
-      </div>
-    </details>
 
-    <p class="featured-update" data-fr="Dernière mise à jour : septembre 2026" data-es="Última actualización: septiembre de 2026" data-en="Last updated: September 2026">Dernière mise à jour : septembre 2026</p>
+    <div class="built-box">
+      <p class="built-title" data-fr="Ce que j&#x27;ai réalisé" data-es="Lo que he realizado" data-en="What I built">Ce que j'ai réalisé</p>
+      <ul class="built-list">
+        <li data-fr="&lt;strong&gt;Import des données&lt;/strong&gt; : intégration des exports Wyscout dans la base en une seule commande, après des contrôles de qualité (format, doublons, saison). Chaque import est consigné dans un journal et précédé d&#x27;une sauvegarde." data-es="&lt;strong&gt;Importación de datos&lt;/strong&gt;: integración de las exportaciones de Wyscout en la base con un solo comando, tras controles de calidad (formato, duplicados, temporada). Cada importación queda registrada en un historial y va precedida de una copia de seguridad." data-en="&lt;strong&gt;Data import&lt;/strong&gt;: Wyscout exports loaded into the database with a single command, after quality checks (format, duplicates, season). Every import is logged and preceded by a backup."><strong>Import des données</strong> : intégration des exports Wyscout dans la base en une seule commande, après des contrôles de qualité (format, doublons, saison). Chaque import est consigné dans un journal et précédé d'une sauvegarde.</li>
+        <li data-fr="&lt;strong&gt;Base de données SQL (SQLite)&lt;/strong&gt; : conçue pour plusieurs saisons et championnats, avec un suivi contrôlé des joueurs d&#x27;une saison et d&#x27;un club à l&#x27;autre. Les cas incertains sont vérifiés manuellement et les décisions conservées." data-es="&lt;strong&gt;Base de datos SQL (SQLite)&lt;/strong&gt;: diseñada para varias temporadas y competiciones, con un seguimiento controlado de los jugadores de una temporada y de un club a otro. Los casos dudosos se revisan manualmente y las decisiones se conservan." data-en="&lt;strong&gt;SQL database (SQLite)&lt;/strong&gt;: designed for multiple seasons and leagues, with controlled tracking of players across seasons and clubs. Uncertain matches are reviewed manually and every decision is kept."><strong>Base de données SQL (SQLite)</strong> : conçue pour plusieurs saisons et championnats, avec un suivi contrôlé des joueurs d'une saison et d'un club à l'autre. Les cas incertains sont vérifiés manuellement et les décisions conservées.</li>
+        <li data-fr="&lt;strong&gt;Moteur d&#x27;analyse statistique&lt;/strong&gt; : percentiles par fonction, analyse contextuelle des performances et caractérisation de l&#x27;identité de jeu des équipes." data-es="&lt;strong&gt;Motor de análisis estadístico&lt;/strong&gt;: percentiles por función, análisis contextual del rendimiento y caracterización de la identidad de juego de los equipos." data-en="&lt;strong&gt;Statistical analysis engine&lt;/strong&gt;: percentiles by role, contextual performance analysis and profiling of each team&#x27;s playing identity."><strong>Moteur d'analyse statistique</strong> : percentiles par fonction, analyse contextuelle des performances et caractérisation de l'identité de jeu des équipes.</li>
+        <li data-fr="&lt;strong&gt;Tableau de bord interactif&lt;/strong&gt; en français, espagnol et anglais : analyse des équipes, analyse des joueurs, recherche de profils." data-es="&lt;strong&gt;Cuadro de mando interactivo&lt;/strong&gt; en francés, español e inglés: análisis de equipos, análisis de jugadores, búsqueda de perfiles." data-en="&lt;strong&gt;Interactive dashboard&lt;/strong&gt; in French, Spanish and English: team analysis, player analysis, profile search."><strong>Tableau de bord interactif</strong> en français, espagnol et anglais : analyse des équipes, analyse des joueurs, recherche de profils.</li>
+        <li data-fr="&lt;strong&gt;Validation du moteur&lt;/strong&gt; : comparaison des résultats avant et après chaque évolution, pour vérifier ses effets avant de l&#x27;adopter." data-es="&lt;strong&gt;Validación del motor&lt;/strong&gt;: comparación de los resultados antes y después de cada cambio, para comprobar sus efectos antes de adoptarlo." data-en="&lt;strong&gt;Engine validation&lt;/strong&gt;: results compared before and after every change, to check its effects before adopting it."><strong>Validation du moteur</strong> : comparaison des résultats avant et après chaque évolution, pour vérifier ses effets avant de l'adopter.</li>
+      </ul>
+      <div class="project-tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">SQL / SQLite</span><span class="tag">JavaScript</span><span class="tag">Google Colab</span><span class="tag">Wyscout</span></div>
+      <p class="project-note" data-fr="Développé avec l&#x27;aide d&#x27;outils d&#x27;intelligence artificielle. J&#x27;ai conçu l&#x27;outil et piloté les choix méthodologiques, les évolutions fonctionnelles et la validation des résultats." data-es="Desarrollado con la ayuda de herramientas de inteligencia artificial. Diseñé la herramienta y dirigí las decisiones metodológicas, la evolución funcional y la validación de los resultados." data-en="Built with the help of AI tools. I designed the tool and led the methodological choices, feature development and validation of results.">Développé avec l'aide d'outils d'intelligence artificielle. J'ai conçu l'outil et piloté les choix méthodologiques, les évolutions fonctionnelles et la validation des résultats.</p>
+    </div>
+
+    <!-- Méthodologie : bouton vers le PDF, à activer quand le document sera dans assets/
+    <a href="assets/ScoutAnalytics_methode_fr.pdf" target="_blank" class="btn btn-outline lang-fr active">Méthodologie (PDF)</a>
+    <a href="assets/ScoutAnalytics_metodologia_es.pdf" target="_blank" class="btn btn-outline lang-es">Metodología (PDF)</a>
+    <a href="assets/ScoutAnalytics_method_en.pdf" target="_blank" class="btn btn-outline lang-en">Methodology (PDF)</a>
+    -->
+
+    <p class="featured-update" data-fr="Dernière mise à jour : octobre 2026" data-es="Última actualización: octubre de 2026" data-en="Last updated: October 2026">Dernière mise à jour : octobre 2026</p>
   </div>
 
   <!-- ===== ANALYSE D'ÉQUIPE ===== -->
@@ -928,26 +1023,6 @@
     <div class="about-skills">
 
       <div class="skills-group">
-        <p class="skills-group-title" data-fr="Analyse vidéo" data-es="Análisis de vídeo" data-en="Video analysis">Analyse vidéo</p>
-        <div class="skills-tags">
-          <span class="tag">Metrica Sports</span>
-          <span class="tag">Wyscout</span>
-          <span class="tag">NacSport</span>
-          <span class="tag">iMovie</span>
-        </div>
-      </div>
-
-      <div class="skills-group">
-        <p class="skills-group-title" data-fr="Données football" data-es="Datos de fútbol" data-en="Football data">Données football</p>
-        <div class="skills-tags">
-          <span class="tag">Wyscout</span>
-          <span class="tag">StatsBomb</span>
-          <span class="tag">Mediacoach</span>
-          <span class="tag">Opta / Instat</span>
-        </div>
-      </div>
-
-      <div class="skills-group">
         <p class="skills-group-title" data-fr="Analyse de données" data-es="Análisis de datos" data-en="Data analysis">Analyse de données</p>
         <div class="skills-tags">
           <span class="tag">Python</span>
@@ -979,6 +1054,26 @@
         </div>
       </div>
 
+      <div class="skills-group">
+        <p class="skills-group-title" data-fr="Analyse vidéo" data-es="Análisis de vídeo" data-en="Video analysis">Analyse vidéo</p>
+        <div class="skills-tags">
+          <span class="tag">Metrica Sports</span>
+          <span class="tag">Wyscout</span>
+          <span class="tag">NacSport</span>
+          <span class="tag">iMovie</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <p class="skills-group-title" data-fr="Données football" data-es="Datos de fútbol" data-en="Football data">Données football</p>
+        <div class="skills-tags">
+          <span class="tag">Wyscout</span>
+          <span class="tag">StatsBomb</span>
+          <span class="tag">Mediacoach</span>
+          <span class="tag">Opta / Instat</span>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -992,8 +1087,8 @@
 
   <div class="contact-wrapper">
     <div class="contact-text">
-      <p data-fr="Disponibilité immédiate pour un poste en analyse de performance, scouting, analyse vidéo ou analyse de données." data-es="Disponibilidad inmediata para un puesto de análisis de rendimiento, scouting, análisis de vídeo o análisis de datos." data-en="Available immediately for a role in performance analysis, scouting, video analysis or data analysis.">
-        Disponibilité immédiate pour un poste en analyse de performance, scouting, analyse vidéo ou analyse de données.
+      <p data-fr="Disponibilité immédiate pour un poste en analyse de données, analyse de performance, scouting ou analyse vidéo." data-es="Disponibilidad inmediata para un puesto de análisis de datos, análisis de rendimiento, scouting o análisis de vídeo." data-en="Available immediately for a role in data analysis, performance analysis, scouting or video analysis.">
+        Disponibilité immédiate pour un poste en analyse de données, analyse de performance, scouting ou analyse vidéo.
       </p>
     </div>
 
@@ -1057,14 +1152,52 @@
       });
     });
 
+    lancerBoucles();
+
     document.documentElement.lang = lang;
     document.title = pageTitles[lang];
+  }
+
+  // Boucles ScoutAnalytics : elles passent l'une après l'autre (celle qui tourne est mise en avant).
+  // Survol ou clic sur une boucle : elle se lance tout de suite, puis la suite reprend.
+  // Rien ne tourne tant que le bloc n'est pas visible à l'écran.
+  const boucles = [...document.querySelectorAll('.shots-loops .shot')];
+  let boucleEnCours = 0, bouclesVisibles = false;
+
+  function jouerBoucle(i) {
+    boucleEnCours = (i + boucles.length) % boucles.length;
+    boucles.forEach((fig, k) => {
+      fig.classList.toggle('playing', k === boucleEnCours);
+      fig.querySelectorAll('video.sa-loop').forEach(v => {
+        if (k === boucleEnCours && v.classList.contains('active') && bouclesVisibles) {
+          v.preload = 'auto'; v.currentTime = 0; v.play().catch(() => {});
+        } else {
+          v.pause();
+        }
+      });
+    });
+  }
+
+  function lancerBoucles() { jouerBoucle(boucleEnCours); }
+
+  boucles.forEach((fig, k) => {
+    fig.querySelectorAll('video.sa-loop').forEach(v => {
+      v.addEventListener('ended', () => { if (v.classList.contains('active')) jouerBoucle(k + 1); });
+    });
+    fig.addEventListener('mouseenter', () => { if (k !== boucleEnCours) jouerBoucle(k); });
+    fig.addEventListener('click', () => jouerBoucle(k));
+  });
+
+  if (boucles.length) {
+    new IntersectionObserver(entrees => {
+      bouclesVisibles = entrees[0].isIntersecting;
+      lancerBoucles();
+    }, { threshold: 0.25 }).observe(document.querySelector('.shots-loops'));
   }
 
   // Langue choisie par l'adresse : tomhamel.github.io/?lang=en ou ?lang=es
   const urlLang = new URLSearchParams(window.location.search).get('lang');
   if (LANGS.includes(urlLang)) setLang(urlLang);
-</script>
 </script>
 
 </body>
