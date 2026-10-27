@@ -653,31 +653,6 @@
       background: #0B101B;
     }
 
-    /* Boucles ScoutAnalytics : une seule tourne, les autres sont atténuées */
-    .shots-loops .shot {
-      cursor: pointer;
-      opacity: 0.4;
-      transition: opacity 0.3s;
-    }
-
-    .shots-loops .shot video {
-      outline: 2px solid transparent;
-      outline-offset: 3px;
-      transition: outline-color 0.3s;
-    }
-
-    .shots-loops .shot.playing {
-      opacity: 1;
-    }
-
-    .shots-loops .shot.playing video {
-      outline-color: var(--text);
-    }
-
-    .shots-loops .shot.playing figcaption {
-      color: var(--text);
-    }
-
     .shot a:hover img {
       transform: translateY(-3px);
       border-color: var(--text);
@@ -847,8 +822,8 @@
       <p data-fr="ScoutAnalytics est un outil d&#x27;analyse complet, construit pour le football à partir des données Wyscout. Comme un tableau de bord Power BI ou Tableau, il réunit dans une base SQL les données de plusieurs championnats et saisons. Mais il fait aussi l&#x27;analyse : chaque statistique est replacée parmi celles des joueurs du même poste, et dans le contexte de jeu de l&#x27;équipe." data-es="ScoutAnalytics es una herramienta de análisis completa, creada para el fútbol a partir de los datos de Wyscout. Como un cuadro de mando de Power BI o Tableau, reúne en una base de datos SQL los datos de varias competiciones y temporadas. Pero además hace el análisis: cada estadística se sitúa entre las de los jugadores de la misma posición y en el contexto de juego del equipo." data-en="ScoutAnalytics is a complete analysis tool, built for football on Wyscout data. Like a Power BI or Tableau dashboard, it brings together data from several leagues and seasons in a SQL database. But it also does the analysis: every statistic is placed among those of players in the same position, and in the context of the team&#x27;s style of play.">ScoutAnalytics est un outil d'analyse complet, construit pour le football à partir des données Wyscout. Comme un tableau de bord Power BI ou Tableau, il réunit dans une base SQL les données de plusieurs championnats et saisons. Mais il fait aussi l'analyse : chaque statistique est replacée parmi celles des joueurs du même poste, et dans le contexte de jeu de l'équipe.</p>
       <p class="featured-usages-title" data-fr="Il sert à :" data-es="Sirve para:" data-en="It is used to:">Il sert à :</p>
       <ul class="featured-usages">
-        <li data-fr="&lt;strong&gt;analyser une équipe&lt;/strong&gt;, la sienne ou un adversaire : identité de jeu, performance collective, comparaison ;" data-es="&lt;strong&gt;analizar un equipo&lt;/strong&gt;, el propio o un rival: identidad de juego, rendimiento colectivo, comparación;" data-en="&lt;strong&gt;analyse a team&lt;/strong&gt;, your own or an opponent: playing identity, collective performance, comparison;"><strong>analyser une équipe</strong>, la sienne ou un adversaire : identité de jeu, performance collective, comparaison ;</li>
-        <li data-fr="&lt;strong&gt;analyser un joueur&lt;/strong&gt; : profil complet, points forts et points faibles, comparaison, joueurs similaires ;" data-es="&lt;strong&gt;analizar un jugador&lt;/strong&gt;: perfil completo, puntos fuertes y débiles, comparación, jugadores similares;" data-en="&lt;strong&gt;analyse a player&lt;/strong&gt;: full profile, strengths and weaknesses, comparison, similar players;"><strong>analyser un joueur</strong> : profil complet, points forts et points faibles, comparaison, joueurs similaires ;</li>
+        <li data-fr="&lt;strong&gt;analyser une équipe&lt;/strong&gt;, la sienne ou un adversaire : identité de jeu, performance collective, comparaison ;" data-es="&lt;strong&gt;analizar un equipo&lt;/strong&gt;, el propio o un rival: identidad de juego, rendimiento colectivo, comparación;" data-en="&lt;strong&gt;analyse a team&lt;/strong&gt;, your own or an opponent: playing identity, collective performance, comparison;"><strong>analyser une équipe</strong>, la sienne ou un adversaire : identité de jeu, performance collective, comparaison ;</li>
+        <li data-fr="&lt;strong&gt;analyser un joueur&lt;/strong&gt; : profil complet, points forts et points faibles, comparaison, joueurs similaires ;" data-es="&lt;strong&gt;analizar un jugador&lt;/strong&gt;: perfil completo, puntos fuertes y débiles, comparación, jugadores similares;" data-en="&lt;strong&gt;analyse a player&lt;/strong&gt;: full profile, strengths and weaknesses, comparison, similar players;"><strong>analyser un joueur</strong> : profil complet, points forts et points faibles, comparaison, joueurs similaires ;</li>
         <li data-fr="&lt;strong&gt;chercher un joueur&lt;/strong&gt; selon les besoins du club." data-es="&lt;strong&gt;buscar un jugador&lt;/strong&gt; según las necesidades del club." data-en="&lt;strong&gt;find a player&lt;/strong&gt; based on the club&#x27;s needs."><strong>chercher un joueur</strong> selon les besoins du club.</li>
       </ul>
       <p class="featured-key" data-fr="&lt;strong&gt;L&#x27;outil ne décide pas à la place du club ce qu&#x27;est un bon joueur.&lt;/strong&gt; Il n&#x27;y a pas de note universelle : chaque joueur est décrit dimension par dimension, et la recherche classe les joueurs selon les priorités que le club fixe lui-même. Pour un même poste, deux clubs aux besoins différents obtiennent deux classements différents, et chacun trouve le bon joueur pour lui." data-es="&lt;strong&gt;La herramienta no decide por el club qué es un buen jugador.&lt;/strong&gt; No hay una nota universal: cada jugador se describe dimensión por dimensión, y la búsqueda ordena a los jugadores según las prioridades que fija el propio club. Para una misma posición, dos clubes con necesidades distintas obtienen dos clasificaciones distintas, y cada uno encuentra el jugador adecuado para él." data-en="&lt;strong&gt;The tool does not decide for the club what a good player is.&lt;/strong&gt; There is no universal score: each player is described dimension by dimension, and the search ranks players according to the priorities the club sets itself. For the same position, two clubs with different needs get two different rankings, and each finds the right player for them."><strong>L'outil ne décide pas à la place du club ce qu'est un bon joueur.</strong> Il n'y a pas de note universelle : chaque joueur est décrit dimension par dimension, et la recherche classe les joueurs selon les priorités que le club fixe lui-même. Pour un même poste, deux clubs aux besoins différents obtiennent deux classements différents, et chacun trouve le bon joueur pour lui.</p>
@@ -887,37 +862,6 @@
       <video class="lang-en" src="assets/sa-demo-en.mp4" poster="assets/sa-demo-en.jpg" controls preload="none" playsinline></video>
     </div>
     <p class="featured-note" data-fr="Version complète présentée en entretien." data-es="Versión completa presentada en entrevista." data-en="Full version shown in interviews.">Version complète présentée en entretien.</p>
-    <div class="shots shots-loops">
-
-      <figure class="shot">
-        <video class="sa-loop lang-fr active" src="assets/sa-boucle-equipe-fr.mp4" poster="assets/sa-boucle-equipe-fr.jpg" muted playsinline preload="none"></video>
-        <video class="sa-loop lang-es" src="assets/sa-boucle-equipe-es.mp4" poster="assets/sa-boucle-equipe-es.jpg" muted playsinline preload="none"></video>
-        <video class="sa-loop lang-en" src="assets/sa-boucle-equipe-en.mp4" poster="assets/sa-boucle-equipe-en.jpg" muted playsinline preload="none"></video>
-        <figcaption data-fr="Du classement au profil d&#x27;équipe" data-es="De la clasificación al perfil del equipo" data-en="From ranking to team profile">Du classement au profil d'équipe</figcaption>
-      </figure>
-
-      <figure class="shot">
-        <video class="sa-loop lang-fr active" src="assets/sa-boucle-joueur-recherche-fr.mp4" poster="assets/sa-boucle-joueur-recherche-fr.jpg" muted playsinline preload="none"></video>
-        <video class="sa-loop lang-es" src="assets/sa-boucle-joueur-recherche-es.mp4" poster="assets/sa-boucle-joueur-recherche-es.jpg" muted playsinline preload="none"></video>
-        <video class="sa-loop lang-en" src="assets/sa-boucle-joueur-recherche-en.mp4" poster="assets/sa-boucle-joueur-recherche-en.jpg" muted playsinline preload="none"></video>
-        <figcaption data-fr="Trouver un joueur" data-es="Encontrar un jugador" data-en="Finding a player">Trouver un joueur</figcaption>
-      </figure>
-
-      <figure class="shot">
-        <video class="sa-loop lang-fr active" src="assets/sa-boucle-joueur-similaires-fr.mp4" poster="assets/sa-boucle-joueur-similaires-fr.jpg" muted playsinline preload="none"></video>
-        <video class="sa-loop lang-es" src="assets/sa-boucle-joueur-similaires-es.mp4" poster="assets/sa-boucle-joueur-similaires-es.jpg" muted playsinline preload="none"></video>
-        <video class="sa-loop lang-en" src="assets/sa-boucle-joueur-similaires-en.mp4" poster="assets/sa-boucle-joueur-similaires-en.jpg" muted playsinline preload="none"></video>
-        <figcaption data-fr="Joueurs similaires et comparaison" data-es="Jugadores similares y comparación" data-en="Similar players and comparison">Joueurs similaires et comparaison</figcaption>
-      </figure>
-
-      <figure class="shot">
-        <video class="sa-loop lang-fr active" src="assets/sa-boucle-recherche-fr.mp4" poster="assets/sa-boucle-recherche-fr.jpg" muted playsinline preload="none"></video>
-        <video class="sa-loop lang-es" src="assets/sa-boucle-recherche-es.mp4" poster="assets/sa-boucle-recherche-es.jpg" muted playsinline preload="none"></video>
-        <video class="sa-loop lang-en" src="assets/sa-boucle-recherche-en.mp4" poster="assets/sa-boucle-recherche-en.jpg" muted playsinline preload="none"></video>
-        <figcaption data-fr="Recherche de profils pondérée" data-es="Búsqueda de perfiles ponderada" data-en="Weighted profile search">Recherche de profils pondérée</figcaption>
-      </figure>
-
-    </div>
 
     <div class="built-box">
       <p class="built-title" data-fr="Ce que j&#x27;ai réalisé" data-es="Lo que he realizado" data-en="What I built">Ce que j'ai réalisé</p>
@@ -1152,47 +1096,8 @@
       });
     });
 
-    lancerBoucles();
-
     document.documentElement.lang = lang;
     document.title = pageTitles[lang];
-  }
-
-  // Boucles ScoutAnalytics : elles passent l'une après l'autre (celle qui tourne est mise en avant).
-  // Survol ou clic sur une boucle : elle se lance tout de suite, puis la suite reprend.
-  // Rien ne tourne tant que le bloc n'est pas visible à l'écran.
-  const boucles = [...document.querySelectorAll('.shots-loops .shot')];
-  let boucleEnCours = 0, bouclesVisibles = false;
-
-  function jouerBoucle(i) {
-    boucleEnCours = (i + boucles.length) % boucles.length;
-    boucles.forEach((fig, k) => {
-      fig.classList.toggle('playing', k === boucleEnCours);
-      fig.querySelectorAll('video.sa-loop').forEach(v => {
-        if (k === boucleEnCours && v.classList.contains('active') && bouclesVisibles) {
-          v.preload = 'auto'; v.currentTime = 0; v.play().catch(() => {});
-        } else {
-          v.pause();
-        }
-      });
-    });
-  }
-
-  function lancerBoucles() { jouerBoucle(boucleEnCours); }
-
-  boucles.forEach((fig, k) => {
-    fig.querySelectorAll('video.sa-loop').forEach(v => {
-      v.addEventListener('ended', () => { if (v.classList.contains('active')) jouerBoucle(k + 1); });
-    });
-    fig.addEventListener('mouseenter', () => { if (k !== boucleEnCours) jouerBoucle(k); });
-    fig.addEventListener('click', () => jouerBoucle(k));
-  });
-
-  if (boucles.length) {
-    new IntersectionObserver(entrees => {
-      bouclesVisibles = entrees[0].isIntersecting;
-      lancerBoucles();
-    }, { threshold: 0.25 }).observe(document.querySelector('.shots-loops'));
   }
 
   // Langue choisie par l'adresse : tomhamel.github.io/?lang=en ou ?lang=es
