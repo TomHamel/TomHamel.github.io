@@ -739,6 +739,17 @@
     }
 
     /* Bloc ScoutAnalytics (octobre 2026) : accroche, usages, « Ce que j'ai réalisé » */
+
+    .case-study { margin: 2rem 0 4rem; }
+    .finalistes-synthese { font-size: 0.9rem; line-height: 1.55; margin: 0 0 1.2rem; max-width: 800px; color: var(--muted); }
+    .finalistes-titre { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.04em; margin: 0.5rem 0 1rem; }
+    .finalistes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; max-width: 800px; }
+    .finaliste video, .finaliste-vide { display: block; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--border); border-radius: 6px; background: #000; }
+    .finaliste-vide { display: flex; align-items: center; justify-content: center; background: transparent; border-style: dashed; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .finaliste-nom { font-weight: 600; margin-top: 0.6rem; font-size: 0.95rem; }
+    .finaliste-info { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-top: 0.2rem; }
+    .finaliste-verdict { font-size: 0.82rem; margin-top: 0.4rem; line-height: 1.45; }
+    @media (max-width: 760px) { .finalistes { grid-template-columns: 1fr; } }
     .method-link { margin-bottom: 1.5rem; }
     .featured-title { margin-bottom: 0.4rem; }
     .featured-sub {
@@ -894,6 +905,57 @@
     </div>
 
     <p class="featured-update" data-fr="Dernière mise à jour : octobre 2026" data-es="Última actualización: octubre de 2026" data-en="Last updated: October 2026">Dernière mise à jour : octobre 2026</p>
+  </div>
+
+
+  <!-- ===== ÉTUDE DE CAS SCOUTANALYTICS ===== -->
+  <div class="case-study">
+      <div class="project-card">
+        <div class="project-main">
+          <p class="project-tag" data-fr="Étude de cas ScoutAnalytics · Recrutement · Superleague croate 2025-26" data-es="Caso práctico ScoutAnalytics · Fichaje · Superliga croata 2025-26" data-en="ScoutAnalytics case study · Recruitment · Croatian Superleague 2025-26">Étude de cas ScoutAnalytics · Recrutement · Superleague croate 2025-26</p>
+          <h4 class="project-title" data-fr="Recruter un défenseur central pour une équipe en bloc haut" data-es="Fichar a un central para un equipo de bloque alto" data-en="Recruiting a centre-back for a high-block team">Recruter un défenseur central pour une équipe en bloc haut</h4>
+          <p class="project-desc" data-fr="Un club de Ligue 2 défend en bloc haut et presse dès la perte du ballon ; à la perte, seuls quatre joueurs restent derrière. Il lui faut un défenseur central qui gagne les duels aériens, défend l'espace dans son dos et relance proprement. Données Wyscout, tri en SQL et recherche pondérée dans ScoutAnalytics pour la shortlist, puis vérification vidéo des trois finalistes." data-es="Un club de Ligue 2 defiende en bloque alto y presiona tras pérdida; al perder el balón, solo quedan cuatro jugadores detrás. Necesita un central que gane los duelos aéreos, defienda el espacio a su espalda y saque el balón con limpieza. Datos de Wyscout, filtrado en SQL y búsqueda ponderada en ScoutAnalytics para la lista corta, y verificación en vídeo de los tres finalistas." data-en="A Ligue 2 club defends in a high block and counter-presses; when it loses the ball, only four players are left behind. It needs a centre-back who wins aerial duels, defends the space in behind and plays out cleanly. Wyscout data, SQL filtering and a weighted search in ScoutAnalytics for the shortlist, then video checks on the three finalists.">Un club de Ligue 2 défend en bloc haut et presse dès la perte du ballon ; à la perte, seuls quatre joueurs restent derrière. Il lui faut un défenseur central qui gagne les duels aériens, défend l'espace dans son dos et relance proprement. Données Wyscout, tri en SQL et recherche pondérée dans ScoutAnalytics pour la shortlist, puis vérification vidéo des trois finalistes.</p>
+          <div class="project-video">
+            <video src="assets/hnl-recrutement-dc.mp4" poster="assets/hnl-recrutement-dc.jpg" controls preload="metadata" playsinline></video>
+            <p class="video-lang lang-es">Vídeo en francés</p>
+            <p class="video-lang lang-en">Video in French</p>
+          </div>
+
+          <h5 class="finalistes-titre" data-fr="Shortlist : validation vidéo" data-es="Lista corta: validación en vídeo" data-en="Shortlist: video validation">Shortlist : validation vidéo</h5>
+          <div class="finalistes">
+            <div class="finaliste">
+              <video src="assets/hnl-joueur-dominguez.mp4" poster="assets/hnl-joueur-dominguez.jpg" controls preload="none" playsinline></video>
+              <p class="finaliste-nom">Sergi Domínguez</p>
+              <p class="finaliste-info" data-fr="Dinamo Zagreb · 21 ans · 5 min" data-es="Dinamo Zagreb · 21 años · 5 min" data-en="Dinamo Zagreb · 21 · 5 min">Dinamo Zagreb · 21 ans · 5 min</p>
+              <p class="finaliste-verdict" data-fr="Ballons longs + · profondeur – · relance + / =. Dominant dans les airs, fragile en 1 contre 1, hors budget." data-es="Balones largos + · profundidad – · salida + / =. Dominante en el juego aéreo, frágil en el 1 contra 1, fuera de presupuesto." data-en="Long balls + · depth – · build-up + / =. Dominant in the air, vulnerable 1 v 1, over budget.">Ballons longs + · profondeur – · relance + / =. Dominant dans les airs, fragile en 1 contre 1, hors budget.</p>
+            </div>
+            <div class="finaliste">
+              <video src="assets/hnl-joueur-jukic.mp4" poster="assets/hnl-joueur-jukic.jpg" controls preload="none" playsinline></video>
+              <p class="finaliste-nom">T. Jukić</p>
+              <p class="finaliste-info" data-fr="Lokomotiva Zagreb · 25 ans · 7 min" data-es="Lokomotiva Zagreb · 25 años · 7 min" data-en="Lokomotiva Zagreb · 25 · 7 min">Lokomotiva Zagreb · 25 ans · 7 min</p>
+              <p class="finaliste-verdict" data-fr="Ballons longs – · profondeur + · relance +. Défenseur de couverture et de conduite de balle." data-es="Balones largos – · profundidad + · salida +. Central de cobertura y de conducción." data-en="Long balls – · depth + · build-up +. A covering, ball-carrying centre-back.">Ballons longs – · profondeur + · relance +. Défenseur de couverture et de conduite de balle.</p>
+            </div>
+            <div class="finaliste">
+              <video src="assets/hnl-joueur-mbacke.mp4" poster="assets/hnl-joueur-mbacke.jpg" controls preload="none" playsinline></video>
+              <p class="finaliste-nom">C. Mbacke Diop</p>
+              <p class="finaliste-info" data-fr="Lokomotiva Zagreb · 20 ans · 7 min" data-es="Lokomotiva Zagreb · 20 años · 7 min" data-en="Lokomotiva Zagreb · 20 · 7 min">Lokomotiva Zagreb · 20 ans · 7 min</p>
+              <p class="finaliste-verdict" data-fr="Ballons longs + · profondeur = · relance =. Dispute tout dans les airs et anticipe, brouillon face au porteur." data-es="Balones largos + · profundidad = · salida =. Lo disputa todo por arriba y anticipa, impreciso ante el poseedor." data-en="Long balls + · depth = · build-up =. Contests everything in the air and reads play, untidy against the ball carrier.">Ballons longs + · profondeur = · relance =. Dispute tout dans les airs et anticipe, brouillon face au porteur.</p>
+            </div>
+          </div>
+          <p class="finalistes-synthese" data-fr="Aucun ne répond seul aux deux moitiés du problème : l'analyse ne choisit pas à la place du club, elle montre ce que chaque profil apporte et ce qui reste à décider." data-es="Ninguno responde solo a las dos mitades del problema: el análisis no elige por el club, muestra lo que aporta cada perfil y lo que queda por decidir." data-en="None of them solves both halves of the problem on his own: the analysis does not choose for the club, it shows what each profile brings and what is left to decide.">Aucun ne répond seul aux deux moitiés du problème : l'analyse ne choisit pas à la place du club, elle montre ce que chaque profil apporte et ce qui reste à décider.</p>
+          <div class="method-link">
+            <a href="assets/hnl-fiches-finalistes.pdf" target="_blank" class="btn btn-outline" data-fr="Fiches des finalistes (PDF)" data-es="Fichas de los finalistas (PDF, en francés)" data-en="Finalist reports (PDF, in French)">Fiches des finalistes (PDF)</a>
+          </div>
+          <div class="project-tags">
+            <span class="tag">SQL</span>
+            <span class="tag">ScoutAnalytics</span>
+            <span class="tag">Wyscout</span>
+            <span class="tag" data-fr="Analyse vidéo" data-es="Análisis de vídeo" data-en="Video analysis">Analyse vidéo</span>
+            <span class="tag" data-fr="Recrutement" data-es="Scouting" data-en="Recruitment">Recrutement</span>
+          </div>
+        </div>
+        
+      </div>
   </div>
 
   <!-- ===== ANALYSE D'ÉQUIPE ===== -->
